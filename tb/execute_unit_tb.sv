@@ -9,11 +9,12 @@ module execute_unit_tb;
 
     // Testbench Signals
     logic clk, rstn;
-    logic signed [PE_COUNT-1:0][DATA_WIDTH-1:0] a, b;
+    logic [PE_COUNT-1:0][DATA_WIDTH-1:0] a, b;
     logic [OP_SEL_WIDTH-1:0] pe_op;
     logic dot_prod_en, shift;
-    logic signed [PE_COUNT-1:0][DATA_WIDTH-1:0] elem_out;
-    logic signed [PE_COUNT-1:0][DATA_WIDTH-1:0] dot_out;
+    logic [PE_COUNT-1:0][DATA_WIDTH-1:0] elem_out;
+    logic [PE_COUNT-1:0][DATA_WIDTH-1:0] dot_out;
+    logic half_clk;
 
     // Instantiate the DUT (Device Under Test)
     execute_unit #(
@@ -25,6 +26,13 @@ module execute_unit_tb;
     initial begin
         clk = 0;
         forever #5 clk = ~clk; // 10ns clock period
+    end
+
+    always_ff @(posedge clk) begin
+        if (!rstn) 
+            half_clk <= 0;
+        else    
+            half_clk <= half_clk ^ 1;
     end
 
     // Testbench Procedure

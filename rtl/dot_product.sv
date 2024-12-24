@@ -4,15 +4,15 @@ module dot_product #(
     parameter DATA_WIDTH = 32
 ) (
     input logic clk, rstn,
-    input logic signed [PE_COUNT-1:0][DATA_WIDTH-1:0] pe_res,
+    input logic [PE_COUNT-1:0][DATA_WIDTH-1:0] pe_res,
     input logic dot_prod_en,
     input logic shift,
-    output logic signed [PE_COUNT-1:0][DATA_WIDTH-1:0] dot_out
+    output logic [PE_COUNT-1:0][DATA_WIDTH-1:0] dot_out
 );
 
-    logic signed [DATA_WIDTH-1:0] sum;
+    logic [DATA_WIDTH-1:0] sum;
     logic [$clog2(PE_COUNT)-1:0] idx, next_idx;
-    logic signed [2*PE_COUNT-2:0][DATA_WIDTH-1:0] partial_sums;
+    logic [2*PE_COUNT-2:0][DATA_WIDTH-1:0] partial_sums;
 
     assign partial_sums[2*PE_COUNT-2:PE_COUNT-1] = pe_res;
     assign sum = partial_sums[0];

@@ -5,9 +5,9 @@ module pe_array #(
     parameter DATA_WIDTH = 32
 ) (
     input logic clk, rstn,
-    input logic signed [PE_COUNT-1:0][DATA_WIDTH-1:0] a, b,
+    input logic [PE_COUNT-1:0][DATA_WIDTH-1:0] a, b,
     input logic [OP_SEL_WIDTH-1:0] pe_op,
-    output logic signed [PE_COUNT-1:0][DATA_WIDTH-1:0] pe_out
+    output logic [PE_COUNT-1:0][DATA_WIDTH-1:0] pe_out
 );
 
     logic [PE_COUNT-1:0][DATA_WIDTH-1:0] c;
@@ -18,8 +18,8 @@ module pe_array #(
             pe #(
                 .DATA_WIDTH(DATA_WIDTH)
             ) pe_unit (
-                .a(a[i]),
-                .b(b[i]),
+                .a($signed(a[i])),
+                .b($signed(b[i])),
                 .op(pe_op),
                 .c(c[i])
             );
