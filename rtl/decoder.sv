@@ -3,9 +3,7 @@
 module decoder #(
     parameter INS_ADDR_WIDTH = 10,
     parameter ADDR_WIDTH = 10,
-    parameter DATA_WIDTH = 32,
-    parameter OPCODE_WIDTH = 3,
-    parameter OP_SEL_WIDTH = 2
+    parameter DATA_WIDTH = 32
 ) (
     input logic clk,     
     input logic rstn,
