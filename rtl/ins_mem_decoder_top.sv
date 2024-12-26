@@ -3,7 +3,8 @@ module ins_mem_decoder_top #(
     parameter ADDR_WIDTH = 10,
     parameter DATA_WIDTH = 32,
     parameter OPCODE_WIDTH = 3,
-    parameter OP_SEL_WIDTH = 2
+    parameter OP_SEL_WIDTH = 2,
+    parameter INS_WIDTH = 64
 ) (
     input logic clk,     
     input logic rstn,
@@ -19,8 +20,7 @@ module ins_mem_decoder_top #(
     output logic r_select 
 );
 
-    logic [63:0] ins_mem_rdata;
-    //logic [(OPCODE_WIDTH+ADDR_WIDTH*3)-1:0] instruction;
+    logic [INS_WIDTH-1:0] ins_mem_rdata;
     logic [INS_ADDR_WIDTH-1:0] pc;
 
     decoder #(
@@ -33,7 +33,7 @@ module ins_mem_decoder_top #(
         .clk(clk),     
         .rstn(rstn),
         .half_clk(half_clk),
-        .instruction(ins_mem_rdata[63:(63-((OPCODE_WIDTH+ADDR_WIDTH*3)-1))]),
+        .instruction(ins_mem_rdata[(OPCODE_WIDTH+ADDR_WIDTH*3)-1:0]),
         .pc(pc), 
         .a_addr(a_addr), 
         .b_addr(b_addr),

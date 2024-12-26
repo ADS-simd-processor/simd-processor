@@ -26,10 +26,11 @@ module decoder #(
 
     logic [OPCODE_WIDTH-1:0] opcode;
 
-    assign opcode = instruction[(OPCODE_WIDTH+ADDR_WIDTH*3)-1 -: OPCODE_WIDTH];
-    assign a_addr = instruction[(ADDR_WIDTH*3)-1 -: ADDR_WIDTH];
-    assign b_addr = instruction[(ADDR_WIDTH*2)-1 -: ADDR_WIDTH];
-    assign r_addr = instruction[ADDR_WIDTH-1 : 0];
+
+    assign opcode = instruction[OPCODE_WIDTH-1 : 0];
+    assign r_addr = instruction[OPCODE_WIDTH+ADDR_WIDTH-1 : OPCODE_WIDTH];
+    assign b_addr = instruction[(OPCODE_WIDTH+ADDR_WIDTH*2)-1 : OPCODE_WIDTH+ADDR_WIDTH];
+    assign a_addr = instruction[(OPCODE_WIDTH+ADDR_WIDTH*3)-1 : OPCODE_WIDTH+ADDR_WIDTH*2];
 
 
    always @(posedge clk) begin

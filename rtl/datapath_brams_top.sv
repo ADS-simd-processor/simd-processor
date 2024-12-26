@@ -47,7 +47,7 @@ module datapath_brams_top #(
     )datapath_uut(
         .clk(clk), 
         .rstn(rstn),
-        .instruction(ins_mem_rdata[(INS_WIDTH-1):((INS_WIDTH-1)-((OPCODE_WIDTH+ADDR_WIDTH*3)-1))]), 
+        .instruction(ins_mem_rdata[(OPCODE_WIDTH+ADDR_WIDTH*3)-1:0]), 
         .a_addr(a_addr),
         .b_addr(b_addr), 
         .r_addr(r_addr), 
