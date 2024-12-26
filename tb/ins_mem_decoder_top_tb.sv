@@ -5,6 +5,7 @@ module ins_mem_decoder_top_tb;
     parameter DATA_WIDTH = 32;
     parameter OPCODE_WIDTH = 3;
     parameter OP_SEL_WIDTH = 2;
+    parameter INS_WIDTH = 64;
 
     logic clk,rstn,half_clk;
     logic [ADDR_WIDTH-1:0] a_addr, b_addr, r_addr;
