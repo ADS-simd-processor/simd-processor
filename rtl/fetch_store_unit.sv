@@ -1,7 +1,7 @@
 module fetch_store_unit #(
-    ADDR_WIDTH = 10,
-    DATA_WIDTH = 32,
-    NUM_ELEMENTS = 4
+    parameter ADDR_WIDTH = 10,
+    parameter DATA_WIDTH = 32,
+    parameter NUM_ELEMENTS = 4
 )(
     input logic clk,
     input logic rstn,
