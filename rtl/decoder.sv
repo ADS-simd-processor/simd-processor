@@ -1,8 +1,8 @@
+`include "params.svh"
+
 module decoder #(
     ADDR_WIDTH = 10,
-    DATA_WIDTH = 32,
-    OPCODE_WIDTH = 3,
-    OP_SEL_WIDTH = 2
+    DATA_WIDTH = 32
 ) (
     input logic [(OPCODE_WIDTH+ADDR_WIDTH*3+1)-1:0] instruction, //From ins mem
 
