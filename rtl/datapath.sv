@@ -5,11 +5,18 @@ module datapath #(
     parameter PE_COUNT = 4,
     parameter DATA_WIDTH = 32,
     parameter BRAM_DEPTH = 1024,
-    parameter ADDR_WIDTH = $clog2(BRAM_DEPTH)
+    parameter ADDR_WIDTH = $clog2(BRAM_DEPTH),
+    parameter INS_ADDR_WIDTH = 8
 ) (
-    input logic clk, rstn
+    input logic clk, rstn,
 
-    // TODO: add signals for connecting with BRAMs (instruction, A, B, result)
+    input logic [(OPCODE_WIDTH+ADDR_WIDTH*3+1)-1:0] instruction, 
+    input logic [PE_COUNT-1:0][DATA_WIDTH-1:0] a, b,
+
+    output logic [ADDR_WIDTH-1:0] a_addr, b_addr, r_addr, 
+    output logic write_en, //BRAM write enable     
+    output logic [INS_ADDR_WIDTH-1:0] pc, //Program counter
+    input logic [PE_COUNT-1:0][DATA_WIDTH-1:0] store_out
 );
 
     localparam LOAD_CTRL_WIDTH = 3 * ADDR_WIDTH + 1 + OP_SEL_WIDTH + 1 + 1 + 1;
@@ -20,15 +27,12 @@ module datapath #(
     logic half_clk;
 
     // Initial control signals from decode
-    logic [(OPCODE_WIDTH+ADDR_WIDTH*3+1)-1:0] instruction; //From ins mem
-    logic pc; //Program counter
-
-    logic [ADDR_WIDTH-1:0] a_addr, b_addr;
+    
     logic [OP_SEL_WIDTH-1:0] pe_op;
     logic dot_prod_en; //enable dot product
     logic shift; //1- shift, 0- accumulate
-    logic [ADDR_WIDTH-1:0] r_addr;
-    logic write_en; //BRAM write enable
+    
+    
     logic r_select; // 0 - Write PE output, 1- write dot product output
 
     logic [LOAD_CTRL_WIDTH-1:0] load_ctrl_reg;
@@ -49,7 +53,7 @@ module datapath #(
     logic store_r_select;     // Which result to write (0 = PE output, 1 = dot product)
 
     // Intermediate signals
-    logic [PE_COUNT-1:0][DATA_WIDTH-1:0] a, b, elem_out, dot_out, store_out;
+    logic [PE_COUNT-1:0][DATA_WIDTH-1:0]  elem_out, dot_out;
 
     // Module instantiation
 
