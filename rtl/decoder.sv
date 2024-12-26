@@ -1,12 +1,17 @@
 `include "params.svh"
 
 module decoder #(
+    INS_ADDR_WIDTH = 10,
     ADDR_WIDTH = 10,
     DATA_WIDTH = 32
 ) (
-    input logic [(OPCODE_WIDTH+ADDR_WIDTH*3+1)-1:0] instruction, //From ins mem
+    input logic clk,     
+    input logic rstn,
+    input logic half_clk,
+    
+    input logic [(OPCODE_WIDTH+ADDR_WIDTH*3)-1:0] instruction, //From ins mem
 
-    output logic pc, //Program counter
+    output logic [INS_ADDR_WIDTH-1:0] pc, //next_instruction address
 
     output logic [ADDR_WIDTH-1:0] a_addr, b_addr,
 
@@ -21,11 +26,20 @@ module decoder #(
 
     logic [OPCODE_WIDTH-1:0] opcode;
 
-    assign opcode = instruction[(OPCODE_WIDTH+ADDR_WIDTH*3+1)-1 -: OPCODE_WIDTH];
-    assign a_addr = instruction[(ADDR_WIDTH*3+1)-1 -: ADDR_WIDTH];
-    assign b_addr = instruction[(ADDR_WIDTH*2+1)-1 -: ADDR_WIDTH];
-    assign r_addr = instruction[(ADDR_WIDTH+1)-1 -: ADDR_WIDTH];
-    assign shift = instruction[0];
+    assign opcode = instruction[(OPCODE_WIDTH+ADDR_WIDTH*3)-1 -: OPCODE_WIDTH];
+    assign a_addr = instruction[(ADDR_WIDTH*3)-1 -: ADDR_WIDTH];
+    assign b_addr = instruction[(ADDR_WIDTH*2)-1 -: ADDR_WIDTH];
+    assign r_addr = instruction[ADDR_WIDTH-1 : 0];
+
+
+   always @(posedge clk) begin
+        if (!rstn)
+            pc <= 32'b0;
+        else if (half_clk) begin
+            pc <= pc + 1; 
+        end
+	end
+
 
     always_comb begin
         case (opcode)
@@ -35,6 +49,7 @@ module decoder #(
                 write_en = 1;
                 r_select = 0;
                 dot_prod_en = 0;
+                shift = 0;
             end
             //Sub A B R
             3'b001 : begin
@@ -42,6 +57,7 @@ module decoder #(
                 write_en = 1;
                 r_select = 0;
                 dot_prod_en = 0;
+                shift = 0;
             end
             // Mul A B R
             3'b010 : begin
@@ -49,26 +65,38 @@ module decoder #(
                 write_en = 1;
                 r_select = 0;
                 dot_prod_en = 0;
+                shift = 0;
             end
-            // Dot product A B R
+            // Dot product Shift A B R
             3'b011 : begin
                 pe_op = 2'b11;
                 write_en = 1;
                 r_select = 1;
                 dot_prod_en = 1;
+                shift = 1;
             end  
-            // Pass B
+            // Dot product Accumulate A B R
             3'b100 : begin
+                pe_op = 2'b11;
+                write_en = 0;
+                r_select = 1;
+                dot_prod_en = 1;
+                shift = 0;
+            end 
+            // Pass B
+            3'b101 : begin
                 pe_op = 2'b00;
                 write_en = 1;
                 r_select = 0;
                 dot_prod_en = 0;
-            end             
+                shift = 0;
+            end           
             default : begin
                 pe_op = 0;
                 dot_prod_en = 0;
                 write_en = 0;
                 r_select = 0;
+                shift = 0;
             end
         endcase
         
