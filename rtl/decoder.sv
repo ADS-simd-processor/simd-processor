@@ -16,8 +16,7 @@ module decoder #(
     output logic [ADDR_WIDTH-1:0] a_addr, b_addr,
 
     output logic [OP_SEL_WIDTH-1:0] pe_op,
-    output logic dot_prod_en, //enable dot product
-    output logic shift, //1- shift, 0- accumulate
+    output logic [1:0] dot_ctrl, //00-disable, 01-shift, 10-accumulate,11-clear
 
     output logic [ADDR_WIDTH-1:0] r_addr,
     output logic write_en, //BRAM write enable
@@ -48,63 +47,62 @@ module decoder #(
                 pe_op = 2'b00;
                 write_en = 0;
                 r_select = 0;
-                dot_prod_en = 0;
-                shift = 0;
+                dot_ctrl = 2'b00;
             end
             //Add A B R
             3'b001 : begin
                 pe_op = 2'b01;
                 write_en = 1;
                 r_select = 0;
-                dot_prod_en = 0;
-                shift = 0;
+                dot_ctrl = 2'b00;
             end
             //Sub A B R
             3'b010 : begin
                 pe_op = 2'b10;
                 write_en = 1;
                 r_select = 0;
-                dot_prod_en = 0;
-                shift = 0;
+                dot_ctrl = 2'b00;
             end
             // Mul A B R
             3'b011 : begin
                 pe_op = 2'b11;
                 write_en = 1;
                 r_select = 0;
-                dot_prod_en = 0;
-                shift = 0;
+                dot_ctrl = 2'b00;
             end
             // Dot product Shift A B R
             3'b100 : begin
                 pe_op = 2'b11;
                 write_en = 1;
                 r_select = 1;
-                dot_prod_en = 1;
-                shift = 1;
+                dot_ctrl = 2'b01;
             end  
             // Dot product Accumulate A B R
             3'b101 : begin
                 pe_op = 2'b11;
-                write_en = 0;
+                write_en = 1;
                 r_select = 1;
-                dot_prod_en = 1;
-                shift = 0;
+                dot_ctrl = 2'b10;
+            end 
+            // Dot product Clear
+            3'b110 : begin
+                pe_op = 2'b00;
+                write_en = 0;
+                r_select = 0;
+                dot_ctrl = 2'b11;
             end 
             // Pass B
-            3'b110 : begin
+            3'b111 : begin
                 pe_op = 2'b00;
                 write_en = 1;
                 r_select = 0;
-                dot_prod_en = 0;
-                shift = 0;
+                dot_ctrl = 2'b00;
             end           
             default : begin
-                pe_op = 0;
-                dot_prod_en = 0;
+                pe_op = 2'b00;
                 write_en = 0;
                 r_select = 0;
-                shift = 0;
+                dot_ctrl = 2'b00;
             end
         endcase
         

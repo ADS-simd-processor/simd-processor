@@ -11,6 +11,7 @@ module ins_mem_decoder_top_tb;
     logic [ADDR_WIDTH-1:0] a_addr, b_addr, r_addr;
     logic [OP_SEL_WIDTH-1:0] pe_op;
     logic dot_prod_en, shift, write_en, r_select;
+    logic [1:0] dot_ctrl;
 
     ins_mem_decoder_top #(
         .INS_ADDR_WIDTH(INS_ADDR_WIDTH),
@@ -25,8 +26,7 @@ module ins_mem_decoder_top_tb;
         .a_addr(a_addr),
         .b_addr(b_addr),
         .pe_op(pe_op),
-        .dot_prod_en(dot_prod_en),
-        .shift(shift),
+        .dot_ctrl(dot_ctrl),
         .r_addr(r_addr),
         .write_en(write_en),
         .r_select(r_select)
