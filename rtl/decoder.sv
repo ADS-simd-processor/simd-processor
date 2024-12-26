@@ -87,8 +87,8 @@ module decoder #(
             // Dot product Clear
             3'b110 : begin
                 pe_op = 2'b00;
-                write_en = 0;
-                r_select = 0;
+                write_en = 1;
+                r_select = 1;
                 dot_ctrl = 2'b11;
             end 
             // Pass B
