@@ -2,3 +2,4 @@ simd-processor.*/
 *.pdf
 *.xpr
 *.txt
+!utils/expected_results.txt
