@@ -26,7 +26,6 @@ module decoder #(
 
     logic [OPCODE_WIDTH-1:0] opcode;
 
-
     assign opcode = instruction[OPCODE_WIDTH-1 : 0];
     assign r_addr = instruction[OPCODE_WIDTH+ADDR_WIDTH-1 : OPCODE_WIDTH];
     assign b_addr = instruction[(OPCODE_WIDTH+ADDR_WIDTH*2)-1 : OPCODE_WIDTH+ADDR_WIDTH];
@@ -44,8 +43,16 @@ module decoder #(
 
     always_comb begin
         case (opcode)
-            //Add A B R
+            //Nop 
             3'b000 : begin
+                pe_op = 2'b00;
+                write_en = 0;
+                r_select = 0;
+                dot_prod_en = 0;
+                shift = 0;
+            end
+            //Add A B R
+            3'b001 : begin
                 pe_op = 2'b01;
                 write_en = 1;
                 r_select = 0;
@@ -53,7 +60,7 @@ module decoder #(
                 shift = 0;
             end
             //Sub A B R
-            3'b001 : begin
+            3'b010 : begin
                 pe_op = 2'b10;
                 write_en = 1;
                 r_select = 0;
@@ -61,7 +68,7 @@ module decoder #(
                 shift = 0;
             end
             // Mul A B R
-            3'b010 : begin
+            3'b011 : begin
                 pe_op = 2'b11;
                 write_en = 1;
                 r_select = 0;
@@ -69,7 +76,7 @@ module decoder #(
                 shift = 0;
             end
             // Dot product Shift A B R
-            3'b011 : begin
+            3'b100 : begin
                 pe_op = 2'b11;
                 write_en = 1;
                 r_select = 1;
@@ -77,7 +84,7 @@ module decoder #(
                 shift = 1;
             end  
             // Dot product Accumulate A B R
-            3'b100 : begin
+            3'b101 : begin
                 pe_op = 2'b11;
                 write_en = 0;
                 r_select = 1;
@@ -85,7 +92,7 @@ module decoder #(
                 shift = 0;
             end 
             // Pass B
-            3'b101 : begin
+            3'b110 : begin
                 pe_op = 2'b00;
                 write_en = 1;
                 r_select = 0;
