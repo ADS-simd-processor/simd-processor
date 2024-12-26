@@ -10,7 +10,7 @@ module datapath #(
 ) (
     input logic clk, rstn,
 
-    input logic [(OPCODE_WIDTH+ADDR_WIDTH*3+1)-1:0] instruction, 
+    input logic [(OPCODE_WIDTH+ADDR_WIDTH*3)-1:0] instruction, 
     input logic [PE_COUNT-1:0][DATA_WIDTH-1:0] a, b,
 
     output logic [ADDR_WIDTH-1:0] a_addr, b_addr, r_addr, 
@@ -29,9 +29,7 @@ module datapath #(
     // Initial control signals from decode
     
     logic [OP_SEL_WIDTH-1:0] pe_op;
-    logic dot_prod_en; //enable dot product
-    logic shift; //1- shift, 0- accumulate
-    
+    logic [1:0] dot_ctrl;
     
     logic r_select; // 0 - Write PE output, 1- write dot product output
 
@@ -44,8 +42,7 @@ module datapath #(
 
     // Execute stage signals 
     logic [OP_SEL_WIDTH-1:0] exec_pe_op;
-    logic exec_dot_prod_en;  // Dot product enable 
-    logic exec_shift;        // 1 = shift dot product output, 0 = accumulate
+    logic [1:0] exec_dot_ctrl;
 
     // Store stage signals
     logic [ADDR_WIDTH-1:0] store_r_addr;
@@ -70,8 +67,7 @@ module datapath #(
         .a(a),
         .b(b),
         .pe_op(exec_pe_op),
-        .dot_prod_en(exec_dot_prod_en),
-        .shift(exec_shift),
+        .dot_ctrl(exec_dot_ctrl),
         .half_clk(half_clk),
         .elem_out(elem_out),
         .dot_out(dot_out)
@@ -82,7 +78,7 @@ module datapath #(
 
     // Combinational control assignments
     assign {load_a_addr, load_b_addr} = load_ctrl_reg[EXEC_CTRL_WIDTH+:(2*ADDR_WIDTH)];
-    assign {exec_pe_op, exec_dot_prod_en, exec_shift} = exec_ctrl_reg[STORE_CTRL_WIDTH+:(OP_SEL_WIDTH+2)];
+    assign {exec_pe_op, exec_dot_ctrl} = exec_ctrl_reg[STORE_CTRL_WIDTH+:(OP_SEL_WIDTH+2)];
     assign {store_r_addr, store_write_en, store_r_select} = store_ctrl_reg;
 
     // Half clock
@@ -102,7 +98,7 @@ module datapath #(
         end
         else begin
             if (half_clk) begin
-                load_ctrl_reg <= {a_addr, b_addr, pe_op, dot_prod_en, shift, r_addr, write_en, r_select};
+                load_ctrl_reg <= {a_addr, b_addr, pe_op, dot_ctrl, r_addr, write_en, r_select};
                 exec_ctrl_reg <= load_ctrl_reg[EXEC_CTRL_WIDTH-1:0];
                 store_ctrl_reg <= exec_ctrl_reg[STORE_CTRL_WIDTH-1:0];
             end

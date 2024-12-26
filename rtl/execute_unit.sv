@@ -9,7 +9,7 @@ module execute_unit #(
 
     // Control signals
     input logic [OP_SEL_WIDTH-1:0] pe_op,
-    input logic dot_prod_en, shift,
+    input logic [1:0] dot_ctrl,
     input logic half_clk,
 
     // Outputs
@@ -31,8 +31,7 @@ module execute_unit #(
         .clk(clk),
         .rstn(rstn),
         .pe_res(pe_out),
-        .dot_prod_en(half_clk & dot_prod_en),
-        .shift(half_clk & shift),
+        .dot_ctrl({2{half_clk}} & dot_ctrl),
         .dot_out(dot_out)
     );
 

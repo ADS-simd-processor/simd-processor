@@ -9,7 +9,7 @@ module pe #(
 );
 
     always_comb begin 
-        case (op)
+        unique case (op)
             2'b00 : c = b;
             2'b01 : c = a + b;
             2'b10 : c = a - b;

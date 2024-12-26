@@ -11,12 +11,13 @@ ADDR_WIDTH = 10
 ELEM_SIZE = 4 # 4 bytes
 
 opcodes = {
-    "add" : 0b000,
-    "sub" : 0b001,
-    "mul" : 0b010,
-    "dot_sft" : 0b011,
-    "dot_acc" : 0b100,
-    "pass_b" : 0b101
+    "nop" : 0b000,
+    "add" : 0b001,
+    "sub" : 0b010,
+    "mul" : 0b011,
+    "dot_sft" : 0b100,
+    "dot_acc" : 0b101,
+    "pass_b" : 0b110
 }
 
 def dec2bin(x, width):
@@ -64,7 +65,10 @@ os.chdir(os.path.dirname(sys.argv[0]))
 asm_file = open("assembly.txt", "w")
 mem_file = open("instructions.txt", "w")
 
-inst_gen("dot", 0, 0, 0, 4, 4, 4)
+inst_gen("add", 0, 0, 0, 1, 4)
+inst_gen("sub", 1, 1, 1, 1, 8)
+inst_gen("trans", 0, 0, 3, 1, 4)
+inst_gen("dot", 3, 3, 4, 4, 8, 4)
     
 asm_file.close()
 mem_file.close()

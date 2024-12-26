@@ -5,8 +5,7 @@ module dot_product #(
 ) (
     input logic clk, rstn,
     input logic [PE_COUNT-1:0][DATA_WIDTH-1:0] pe_res,
-    input logic dot_prod_en,
-    input logic shift,
+    input logic [1:0] dot_ctrl,
     output logic [PE_COUNT-1:0][DATA_WIDTH-1:0] dot_out
 );
 
@@ -31,20 +30,29 @@ module dot_product #(
             idx <= (1 << PE_COUNT) - 1;
         end
         else begin
-            if (dot_prod_en) begin
-                if (shift) begin
+            unique case (dot_ctrl)
+
+                2'b01: begin    // Shift
                     idx <= next_idx;
                     dot_out[next_idx] <= sum;
                 end
-                else begin
+
+                2'b10: begin    // Accumulate
                     idx <= idx;
                     dot_out[idx] <= dot_out[idx] + sum;
                 end
-            end
-            else begin
-                idx <= idx;
-                dot_out <= dot_out;
-            end
+
+                2'b11: begin    // Clear
+                    idx <= 'b0;
+                    dot_out[0] <= sum;
+                    dot_out[PE_COUNT-1:1] <= 'b0;
+                end
+
+                default: begin
+                    idx <= idx;
+                    dot_out <= dot_out;
+                end
+            endcase
         end
     end
 

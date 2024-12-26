@@ -11,7 +11,7 @@ module execute_unit_tb;
     logic clk, rstn;
     logic [PE_COUNT-1:0][DATA_WIDTH-1:0] a, b;
     logic [OP_SEL_WIDTH-1:0] pe_op;
-    logic dot_prod_en, shift;
+    logic [1:0] dot_ctrl;
     logic [PE_COUNT-1:0][DATA_WIDTH-1:0] elem_out;
     logic [PE_COUNT-1:0][DATA_WIDTH-1:0] dot_out;
     logic half_clk;
@@ -42,8 +42,7 @@ module execute_unit_tb;
         a = '0;
         b = '0;
         pe_op = '0;
-        dot_prod_en = 0;
-        shift = 0;
+        dot_ctrl = 2'b00;
 
         // Apply reset
         #10 rstn = 1;
@@ -90,52 +89,48 @@ module execute_unit_tb;
         a = '{8'h01, 8'h01, 8'h01, 8'h01};
         b = '{8'h01, 8'h01, 8'h01, 8'h01};
         pe_op = 2'b11; 
-        dot_prod_en = 1;
-        shift = 1;
+        dot_ctrl = 2'b11;
         #20;
 
         a = a * 2;
         b = b * 2;
-        shift = 0;
+        dot_ctrl = 2'b10;
         #20;
 
         a = '{8'h01, 8'h01, 8'h01, 8'h01};
         b = '{8'h01, 8'h01, 8'h01, 8'h01};
         pe_op = 2'b11; 
-        dot_prod_en = 1;
-        shift = 1;
+        dot_ctrl = 2'b01;
         #20;
 
         a = a * 2;
         b = b * 2;
-        shift = 0;
+        dot_ctrl = 2'b10;
         #20;
 
         a = '{8'h01, 8'h01, 8'h01, 8'h01};
         b = '{8'h01, 8'h01, 8'h01, 8'h01};
         pe_op = 2'b11; 
-        dot_prod_en = 1;
-        shift = 1;
+        dot_ctrl = 2'b01;
         #20;
 
         a = a * 2;
         b = b * 2;
-        shift = 0;
+        dot_ctrl = 2'b10;
         #20;
 
         a = '{8'h01, 8'h01, 8'h01, 8'h01};
         b = '{8'h01, 8'h01, 8'h01, 8'h01};
         pe_op = 2'b11; 
-        dot_prod_en = 1;
-        shift = 1;
+        dot_ctrl = 2'b01;
         #20;
 
         a = a * 2;
         b = b * 2;
-        shift = 0;
+        dot_ctrl = 2'b10;
         #20;
 
-        dot_prod_en = 0;
+        dot_ctrl = 2'b00;
         // Finish simulation
         #10;
         $finish;
