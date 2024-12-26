@@ -12,8 +12,7 @@ module ins_mem_decoder_top #(
     output logic [ADDR_WIDTH-1:0] a_addr, b_addr,
 
     output logic [OP_SEL_WIDTH-1:0] pe_op,
-    output logic dot_prod_en, 
-    output logic shift,
+    output logic [1:0] dot_ctrl,
 
     output logic [ADDR_WIDTH-1:0] r_addr,
     output logic write_en,
@@ -38,8 +37,7 @@ module ins_mem_decoder_top #(
         .a_addr(a_addr), 
         .b_addr(b_addr),
         .pe_op(pe_op),
-        .dot_prod_en(dot_prod_en),
-        .shift(shift), 
+        .dot_ctrl(dot_ctrl), 
         .r_addr(r_addr),
         .write_en(write_en), 
         .r_select(r_select) 
