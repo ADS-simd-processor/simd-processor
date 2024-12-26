@@ -11,12 +11,12 @@ module datapath #(
     input logic clk, rstn,
 
     input logic [(OPCODE_WIDTH+ADDR_WIDTH*3)-1:0] instruction, 
-    input logic [PE_COUNT-1:0][DATA_WIDTH-1:0] a, b,
+    input logic [PE_COUNT-1:0][DATA_WIDTH-1:0] bram_a_dout, bram_b_dout,
 
-    output logic [ADDR_WIDTH-1:0] a_addr, b_addr, r_addr, 
-    output logic write_en, //BRAM write enable     
+    output logic [ADDR_WIDTH-1:0] bram_a_addr, bram_b_addr, bram_r_addr, 
+    output logic bram_r_wen, //BRAM write enable     
     output logic [INS_ADDR_WIDTH-1:0] pc, //Program counter
-    input logic [PE_COUNT-1:0][DATA_WIDTH-1:0] store_out
+    output logic [PE_COUNT-1:0][DATA_WIDTH-1:0] bram_r_din
 );
 
     localparam LOAD_CTRL_WIDTH = 3 * ADDR_WIDTH + 1 + OP_SEL_WIDTH + 1 + 1 + 1;
@@ -27,10 +27,11 @@ module datapath #(
     logic half_clk;
 
     // Initial control signals from decode
-    
+    logic [ADDR_WIDTH-1:0] a_addr, b_addr;
     logic [OP_SEL_WIDTH-1:0] pe_op;
     logic [1:0] dot_ctrl;
-    
+    logic [ADDR_WIDTH-1:0] r_addr;
+    logic write_en; //BRAM write enable
     logic r_select; // 0 - Write PE output, 1- write dot product output
 
     logic [LOAD_CTRL_WIDTH-1:0] load_ctrl_reg;
@@ -50,7 +51,7 @@ module datapath #(
     logic store_r_select;     // Which result to write (0 = PE output, 1 = dot product)
 
     // Intermediate signals
-    logic [PE_COUNT-1:0][DATA_WIDTH-1:0]  elem_out, dot_out;
+    logic [PE_COUNT-1:0][DATA_WIDTH-1:0] a, b, elem_out, dot_out, store_out;
 
     // Module instantiation
 
@@ -75,6 +76,15 @@ module datapath #(
 
     // Combinational assignments
     assign store_out = (store_r_select) ? dot_out : elem_out;
+
+    // BRAM signals
+    assign bram_a_addr = load_a_addr;
+    assign bram_b_addr = load_b_addr;
+    assign bram_r_addr = store_r_addr;
+    assign a = bram_a_dout;
+    assign b = bram_b_dout;
+    assign bram_r_din = store_out;
+    assign bram_r_wen = store_write_en;
 
     // Combinational control assignments
     assign {load_a_addr, load_b_addr} = load_ctrl_reg[EXEC_CTRL_WIDTH+:(2*ADDR_WIDTH)];

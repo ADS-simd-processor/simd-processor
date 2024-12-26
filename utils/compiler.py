@@ -17,7 +17,8 @@ opcodes = {
     "mul" : 0b011,
     "dot_sft" : 0b100,
     "dot_acc" : 0b101,
-    "pass_b" : 0b110
+    "dot_clr" : 0b110,
+    "pass_b" : 0b111
 }
 
 def dec2bin(x, width):
@@ -55,7 +56,10 @@ def inst_gen(op, a_start, b_start, r_start, m, n, p=0):
                 offset = i * max(p // UNIT, 1) + (k // UNIT) 
 
                 # Single element calculation
-                single_inst_gen("dot_sft", a_start + n_times * i + 0, b_start + n_times * k + 0, r_start + offset)
+                if k % UNIT == 0:
+                    single_inst_gen("dot_clr", a_start + n_times * i + 0, b_start + n_times * k + 0, r_start + offset)
+                else:
+                    single_inst_gen("dot_sft", a_start + n_times * i + 0, b_start + n_times * k + 0, r_start + offset)
                 
                 for j in range(1, n_times):
                     single_inst_gen("dot_acc", a_start + n_times * i + j, b_start + n_times * k + j, r_start + offset)

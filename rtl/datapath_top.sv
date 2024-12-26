@@ -1,6 +1,6 @@
 `include "params.svh"
 
-module datapath_brams_top #(
+module datapath_top #(
     parameter PE_COUNT = 4,
     parameter DATA_WIDTH = 32,
     parameter BRAM_DEPTH = 1024,
