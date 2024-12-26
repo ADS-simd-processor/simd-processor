@@ -6,12 +6,15 @@ np.random.seed(13212)
 
 UNITS = 4
 BIT_WIDTH = 32
+MASK = 0xFFFFFFFF
 
 def dec2hex(x, width):
-    return hex(x)[2:].zfill(width)
+    #print(hex(x & MASK))
+    return hex(x & MASK)[2:].zfill(width)
 
 def write_data(file, matrix):
-    
+    #print(matrix)
+    matrix = matrix.astype(np.int32)
     r, c = matrix.shape
 
     for i in range(r):
@@ -26,12 +29,34 @@ def write_data(file, matrix):
 
 os.chdir(os.path.dirname(sys.argv[0]))
 a_file = open("a_data.txt", "w")
-b_file = open("a_data.txt", "w")
+b_file = open("b_data.txt", "w")
 
-a = np.random.randint(0, 1000, (2, 8))
-print(a)
-
+# for add
+a = np.random.randint(-50, 50, (1, 4))
 write_data(a_file, a)
+
+b = np.random.randint(-50, 50, (1, 4))
+write_data(b_file, b)
+
+print(f"a + b = {(a + b).astype(np.int32)}")
+
+# for sub
+a = np.random.randint(-30, 30, (1, 8))
+write_data(a_file, a)
+
+b = np.random.randint(-30, 30, (1, 8))
+write_data(b_file, b)
+
+print(f"a - b = {(a - b).astype(np.int32)}")
+
+# for dot
+a = np.random.randint(-10, 10, (4, 8))
+write_data(a_file, a)
+
+b = np.random.randint(-10, 10, (4, 8))
+write_data(b_file, b)
+
+print(f"a . b = {np.matmul(a, b.T).astype(np.int32)}")
 
 a_file.close()
 b_file.close()
