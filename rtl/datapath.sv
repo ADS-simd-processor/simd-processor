@@ -20,13 +20,13 @@ module datapath #(
     logic half_clk;
 
     // Initial control signals from decode
-    logic [(OPCODE_WIDTH+ADDR_WIDTH*3+1)-1:0] instruction, //From ins mem
+    logic [(OPCODE_WIDTH+ADDR_WIDTH*3+1)-1:0] instruction; //From ins mem
     logic pc; //Program counter
 
     logic [ADDR_WIDTH-1:0] a_addr, b_addr;
     logic [OP_SEL_WIDTH-1:0] pe_op;
-    logic dot_prod_en, //enable dot product
-    logic shift, //1- shift, 0- accumulate
+    logic dot_prod_en; //enable dot product
+    logic shift; //1- shift, 0- accumulate
     logic [ADDR_WIDTH-1:0] r_addr;
     logic write_en; //BRAM write enable
     logic r_select; // 0 - Write PE output, 1- write dot product output
@@ -55,7 +55,7 @@ module datapath #(
 
     decoder #(
         .ADDR_WIDTH(ADDR_WIDTH)
-    ) decode (.*)
+    ) decode (.*);
 
     execute_unit #(
         .PE_COUNT(PE_COUNT),
