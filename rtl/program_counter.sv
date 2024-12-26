@@ -1,5 +1,5 @@
 module program_counter #(
-    ADDR_WIDTH = 10
+    parameter ADDR_WIDTH = 10
 )(
     input logic clk,     
     input logic rst,
