@@ -1,7 +1,7 @@
 `include "params.svh"
 
 module datapath_top #(
-    parameter PE_COUNT = 4,
+    parameter PE_COUNT = 8,
     parameter DATA_WIDTH = 32,
     parameter BRAM_DEPTH = 1024,
     parameter ADDR_WIDTH = $clog2(BRAM_DEPTH),
@@ -13,30 +13,34 @@ module datapath_top #(
     //BRAM A from PS
     input logic bram_a_wr_en,
     input logic [ADDR_WIDTH-1:0] bram_a_wr_addr,
-    input logic [ADDR_WIDTH-1:0] bram_a_wr_data,
+    input logic [PE_COUNT-1:0][DATA_WIDTH-1:0] bram_a_wr_data,
 
     //BRAM B from PS
     input logic bram_b_wr_en,
     input logic [ADDR_WIDTH-1:0] bram_b_wr_addr,
-    input logic [ADDR_WIDTH-1:0] bram_b_wr_data,
+    input logic [PE_COUNT-1:0][DATA_WIDTH-1:0] bram_b_wr_data,
 
     //BRAM INS from PS
     input logic bram_ins_wr_en,
     input logic [INS_ADDR_WIDTH-1:0] bram_ins_wr_addr,
-    input logic [INS_ADDR_WIDTH-1:0] bram_ins_wr_data,
+    input logic [INS_WIDTH-1:0] bram_ins_wr_data,
 
     //BRAM R from PS
     input logic [INS_ADDR_WIDTH-1:0] bram_r_r_addr,
     //BRAM R to PS
-    output logic [INS_ADDR_WIDTH-1:0] bram_r_r_data
+    output logic [PE_COUNT-1:0][DATA_WIDTH-1:0] bram_r_r_data
 
 );
+    localparam INS_DATA_WIDTH = (OPCODE_WIDTH + ADDR_WIDTH*3) - 1;
 
     logic [INS_WIDTH-1:0] ins_mem_rdata;
-    logic [ADDR_WIDTH-1:0] a_addr, b_addr, r_addr; 
-    logic write_en;     
+    logic [ADDR_WIDTH-1:0] bram_a_addr, bram_b_addr, bram_r_addr; 
+    logic bram_r_wen;     
     logic [INS_ADDR_WIDTH-1:0] pc;
-    logic [PE_COUNT-1:0][DATA_WIDTH-1:0] a, b, store_out;
+    logic [PE_COUNT-1:0][DATA_WIDTH-1:0] bram_a_dout, bram_b_dout, bram_r_din;
+    logic [INS_DATA_WIDTH-1:0] instruction;
+
+    assign instruction = ins_mem_rdata[INS_DATA_WIDTH-1:0];
 
     datapath #(
         .PE_COUNT(PE_COUNT),
@@ -44,28 +48,18 @@ module datapath_top #(
         .BRAM_DEPTH(BRAM_DEPTH),
         .ADDR_WIDTH(ADDR_WIDTH),
         .INS_ADDR_WIDTH(INS_ADDR_WIDTH)
-    )datapath_uut(
-        .clk(clk), 
-        .rstn(rstn),
-        .instruction(ins_mem_rdata[(OPCODE_WIDTH+ADDR_WIDTH*3)-1:0]), 
-        .a_addr(a_addr),
-        .b_addr(b_addr), 
-        .r_addr(r_addr), 
-        .write_en(write_en),      
-        .pc(pc) 
-    );
-
+    ) datapath_uut (.*);
 
     BRAM_A bram_a (
         .clka(clk),
         .ena(1'b1),
-        .wea(wr_en_bram_a),
+        .wea(bram_a_wr_en),
         .addra(bram_a_wr_addr),
         .dina(bram_a_wr_data),
         .clkb(clk),
         .enb(1'b1),
-        .addrb(a_addr),
-        .doutb(a)
+        .addrb(bram_a_addr),
+        .doutb(bram_a_dout)
     );
 
     BRAM_B bram_b (
@@ -76,16 +70,16 @@ module datapath_top #(
         .dina(bram_b_wr_data),
         .clkb(clk),
         .enb(1'b1),
-        .addrb(b_addr),
-        .doutb(b)
+        .addrb(bram_b_addr),
+        .doutb(bram_b_dout)
     );
 
     BRAM_R bram_r (
         .clka(clk),
         .ena(1'b1),
-        .wea(write_en),
-        .addra(r_addr),
-        .dina(store_out),
+        .wea(bram_r_wen),
+        .addra(bram_r_addr),
+        .dina(bram_r_din),
         .clkb(clk),
         .enb(1'b1),
         .addrb(bram_r_r_addr),

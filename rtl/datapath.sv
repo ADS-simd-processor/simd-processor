@@ -56,6 +56,7 @@ module datapath #(
     // Module instantiation
 
     decoder #(
+        .INS_ADDR_WIDTH(INS_ADDR_WIDTH),
         .ADDR_WIDTH(ADDR_WIDTH)
     ) decode (.*);
 
