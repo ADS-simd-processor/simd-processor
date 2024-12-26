@@ -1,4 +1,6 @@
 
+import os
+import sys
 
 # instruction format
 # opcode, A addr, B addr, R addr
@@ -23,8 +25,10 @@ def dec2bin(x, width):
 def single_inst_gen(op, a_addr, b_addr, r_addr):
     assembly = f"{op}\t{a_addr} {b_addr} {r_addr}"
     inst = dec2bin(a_addr, ADDR_WIDTH) + dec2bin(b_addr, ADDR_WIDTH) + dec2bin(r_addr, ADDR_WIDTH) + dec2bin(opcodes[op], OP_WIDTH)
-    print(assembly + "\t\t" + inst)
-    file.write(assembly + '\n')
+    inst_val = int(inst, base=2)
+    #print(assembly + "\t\t" + inst)
+    asm_file.write(assembly + '\n')
+    mem_file.write(dec2bin(inst_val, 64) + ";\t" + assembly + '\n')
 
 def inst_gen(op, a_start, b_start, r_start, m, n, p=0):
 
@@ -55,8 +59,12 @@ def inst_gen(op, a_start, b_start, r_start, m, n, p=0):
                 for j in range(1, n_times):
                     single_inst_gen("dot_acc", a_start + n_times * i + j, b_start + n_times * k + j, r_start + offset)
 
-file = open("assembly.txt", "w")
+os.chdir(os.path.dirname(sys.argv[0]))
 
-inst_gen("dot", 0, 0, 0, 16, 16, 16)
+asm_file = open("assembly.txt", "w")
+mem_file = open("instructions.txt", "w")
+
+inst_gen("dot", 0, 0, 0, 4, 4, 4)
     
-file.close()
+asm_file.close()
+mem_file.close()
