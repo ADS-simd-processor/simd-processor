@@ -30,7 +30,7 @@ def single_inst_gen(op, a_addr, b_addr, r_addr):
     inst_val = int(inst, base=2)
     #print(assembly + "\t\t" + inst)
     asm_file.write(assembly + '\n')
-    mem_file.write(dec2bin(inst_val, 64) + ";\t" + assembly + '\n')
+    mem_file.write(dec2bin(inst_val, 64) + ',\n')
 
 def inst_gen(op, a_start, b_start, r_start, m, n, p=0):
 
