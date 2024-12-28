@@ -2,4 +2,8 @@ simd-processor.*/
 *.pdf
 *.xpr
 *.txt
+*.exe 
+.vscode/
+
+
 !utils/expected_results.txt
