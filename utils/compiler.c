@@ -81,6 +81,10 @@ void inst_gen(MatrixOp op, uint16_t a_start, uint16_t b_start, uint16_t r_start,
     }
 }
 
+void reset_pc() {
+    pc = 0;
+}
+
 void write_to_file(const char *filepath) {
 
     FILE *file = fopen(filepath, "w");
