@@ -92,6 +92,8 @@ module datapath #(
     assign {exec_pe_op, exec_dot_ctrl} = exec_ctrl_reg[STORE_CTRL_WIDTH+:(OP_SEL_WIDTH+2)];
     assign {store_r_addr, store_write_en, store_r_select} = store_ctrl_reg;
 
+    assign load_ctrl_reg = {a_addr, b_addr, pe_op, dot_ctrl, r_addr, write_en, r_select};
+
     // Half clock
     always_ff @(posedge clk) begin
         if (!rstn) 
@@ -103,13 +105,11 @@ module datapath #(
     // Pipeline registers
     always_ff @( posedge clk ) begin 
         if (!rstn) begin
-            load_ctrl_reg <= 'b0;
             exec_ctrl_reg <= 'b0;
             store_ctrl_reg <= 'b0;
         end
         else begin
             if (half_clk) begin
-                load_ctrl_reg <= {a_addr, b_addr, pe_op, dot_ctrl, r_addr, write_en, r_select};
                 exec_ctrl_reg <= load_ctrl_reg[EXEC_CTRL_WIDTH-1:0];
                 store_ctrl_reg <= exec_ctrl_reg[STORE_CTRL_WIDTH-1:0];
             end

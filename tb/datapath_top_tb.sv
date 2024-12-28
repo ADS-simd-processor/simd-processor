@@ -3,7 +3,7 @@
 
 module datapath_top_tb;
 
-    parameter PE_COUNT = 8;
+    parameter PE_COUNT = 4;
     parameter DATA_WIDTH = 32;
     parameter BRAM_DEPTH = 1024;
     parameter ADDR_WIDTH = $clog2(BRAM_DEPTH);
@@ -79,7 +79,7 @@ module datapath_top_tb;
         // Deassert reset after 20 ns
         #10 rstn = 1;
 
-        #750 $finish;
+        #800 $finish;
     end
 
 

@@ -56,6 +56,8 @@ write_data(a_file, a)
 b = np.random.randint(-10, 10, (4, 8))
 write_data(b_file, b)
 
+print(a)
+print(b)
 print(f"a . b = {np.matmul(a, b.T).astype(np.int32)}")
 
 a_file.close()
