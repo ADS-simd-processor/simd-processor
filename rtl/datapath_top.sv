@@ -31,7 +31,7 @@ module datapath_top #(
     output logic [PE_COUNT-1:0][DATA_WIDTH-1:0] bram_r_r_data
 
 );
-    localparam INS_DATA_WIDTH = (OPCODE_WIDTH + ADDR_WIDTH*3) - 1;
+    localparam INS_DATA_WIDTH = (OPCODE_WIDTH + ADDR_WIDTH*3);
 
     logic [INS_WIDTH-1:0] ins_mem_rdata;
     logic [ADDR_WIDTH-1:0] bram_a_addr, bram_b_addr, bram_r_addr; 
