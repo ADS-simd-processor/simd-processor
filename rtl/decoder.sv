@@ -8,6 +8,7 @@ module decoder #(
     input logic clk,     
     input logic rstn,
     input logic half_clk,
+    input logic stall,
     
     input logic [(OPCODE_WIDTH+ADDR_WIDTH*3)-1:0] instruction, //From ins mem
 
@@ -34,7 +35,7 @@ module decoder #(
    always @(posedge clk) begin
         if (!rstn)
             pc <= 32'b0;
-        else if (half_clk) begin
+        else if (half_clk & !stall) begin
             pc <= pc + 1; 
         end
 	end

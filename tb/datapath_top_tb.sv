@@ -11,6 +11,7 @@ module datapath_top_tb;
     parameter INS_WIDTH = 64;
 
     logic clk, rstn;
+    logic stall;
 
     // BRAM A from PS
     logic bram_a_wr_en;
@@ -43,6 +44,7 @@ module datapath_top_tb;
     ) dut (
         .clk(clk),
         .rstn(rstn),
+        .stall(stall),
         .bram_a_wr_en(bram_a_wr_en),
         .bram_a_wr_addr(bram_a_wr_addr),
         .bram_a_wr_data(bram_a_wr_data),
@@ -65,6 +67,7 @@ module datapath_top_tb;
     // Reset and test stimulus
     initial begin
         rstn = 0;
+        stall = 0;
         bram_a_wr_en = 0;
         bram_b_wr_en = 0;
         bram_ins_wr_en = 0;
@@ -78,6 +81,12 @@ module datapath_top_tb;
 
         // Deassert reset after 20 ns
         #10 rstn = 1;
+
+        #400;
+        @(posedge clk) stall = 1;
+
+        #390;
+        @(posedge clk) stall = 0;
 
         #800 $finish;
     end

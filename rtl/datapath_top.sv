@@ -9,6 +9,7 @@ module datapath_top #(
     parameter INS_WIDTH = 64
 ) (
     input logic clk, rstn,
+    input logic stall,
 
     //BRAM A from PS
     input logic bram_a_wr_en,

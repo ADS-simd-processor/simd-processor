@@ -9,6 +9,7 @@ module datapath #(
     parameter INS_ADDR_WIDTH = 8
 ) (
     input logic clk, rstn,
+    input logic stall,
 
     input logic [(OPCODE_WIDTH+ADDR_WIDTH*3)-1:0] instruction, 
     input logic [PE_COUNT-1:0][DATA_WIDTH-1:0] bram_a_dout, bram_b_dout,

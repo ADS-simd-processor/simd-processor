@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="591.479 ns"></ZoomStartTime>
-      <ZoomEndTime time="705.780 ns"></ZoomEndTime>
-      <Cursor1Time time="615.000 ns"></Cursor1Time>
+      <ZoomStartTime time="887.780 ns"></ZoomStartTime>
+      <ZoomEndTime time="1,002.581 ns"></ZoomEndTime>
+      <Cursor1Time time="1,000.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="228"></NameColumnWidth>
-      <ValueColumnWidth column_width="165"></ValueColumnWidth>
+      <ValueColumnWidth column_width="160"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="65" />
+   <WVObjectSize size="66" />
    <wvobject fp_name="/datapath_top_tb/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -238,8 +238,11 @@
    <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/store_out" type="array">
       <obj_property name="ElementShortName">store_out[3:0][31:0]</obj_property>
       <obj_property name="ObjectShortName">store_out[3:0][31:0]</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
-      <obj_property name="isExpanded"></obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/stall" type="logic">
+      <obj_property name="ElementShortName">stall</obj_property>
+      <obj_property name="ObjectShortName">stall</obj_property>
    </wvobject>
    <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/PE_COUNT" type="array">
       <obj_property name="ElementShortName">PE_COUNT[31:0]</obj_property>
