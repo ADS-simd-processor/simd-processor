@@ -31,6 +31,10 @@ os.chdir(os.path.dirname(sys.argv[0]))
 a_file = open("a_data.txt", "w")
 b_file = open("b_data.txt", "w")
 
+# write_data(file, matrix)
+# can write several matrices like done below
+# if using for dot product, b has to be given as transpose
+
 # for add
 a = np.random.randint(-50, 50, (1, 4))
 write_data(a_file, a)
@@ -56,8 +60,6 @@ write_data(a_file, a)
 b = np.random.randint(-10, 10, (4, 8))
 write_data(b_file, b)
 
-print(a)
-print(b)
 print(f"a . b = {np.matmul(a, b.T).astype(np.int32)}")
 
 a_file.close()

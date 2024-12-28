@@ -69,6 +69,14 @@ os.chdir(os.path.dirname(sys.argv[0]))
 asm_file = open("assembly.txt", "w")
 mem_file = open("instructions.txt", "w")
 
+# inst_gen(op, a_start, b_start, r_start, m, n, p=0)
+# op: add, sub, trans, dot
+# a_start, b_start: starting addresses of matrices
+# r_start: starting address to store result matrix
+# m: rows of matrix A
+# n: columns of matrix A
+# p (only needed for dot product) columns of matrix B, to do dot product B has to be nxp matrix
+
 inst_gen("add", 0, 0, 0, 1, 4)
 inst_gen("sub", 1, 1, 1, 1, 8)
 inst_gen("trans", 0, 0, 3, 1, 4)
