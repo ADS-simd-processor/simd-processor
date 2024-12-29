@@ -62,7 +62,7 @@ module datapath_top_tb;
         forever #5 clk = ~clk; // 100 MHz clock
     end
 
-    // Reset and test stimulus
+
     initial begin
         rstn = 0;
         bram_a_wr_en = 0;
@@ -76,10 +76,25 @@ module datapath_top_tb;
         bram_ins_wr_data = '0;
         bram_r_r_addr = 0;
 
-        // Deassert reset after 20 ns
+
         #10 rstn = 1;
 
-        #800 $finish;
+        #800 
+        // Read BRAM R first 10 addresses 
+        for (int i = 0; i < 10; i++) begin
+            bram_r_r_addr =  i;
+            #10; // Wait for 2 cycles 
+            #10;
+
+            $display("Address %d: Read Data Row: %d, %d, %d, %d", 
+                     bram_r_r_addr, 
+                     $signed(bram_r_r_data[0]),
+                     $signed(bram_r_r_data[1]),
+                     $signed(bram_r_r_data[2]),
+                     $signed(bram_r_r_data[3]));
+        end
+
+        #50 $finish;
     end
 
 
