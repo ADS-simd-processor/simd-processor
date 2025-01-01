@@ -7,7 +7,7 @@ module datapath_top_tb;
     parameter DATA_WIDTH = 32;
     parameter BRAM_DEPTH = 1024;
     parameter ADDR_WIDTH = $clog2(BRAM_DEPTH);
-    parameter INS_ADDR_WIDTH = 10;
+    parameter INS_ADDR_WIDTH = 11;
     parameter INS_WIDTH = 64;
 
     logic clk, rstn;
@@ -64,7 +64,7 @@ module datapath_top_tb;
         forever #5 clk = ~clk; // 100 MHz clock
     end
 
-    // Reset and test stimulus
+
     initial begin
         rstn = 0;
         stall = 0;
@@ -77,9 +77,9 @@ module datapath_top_tb;
         bram_a_wr_data = '0;
         bram_b_wr_data = '0;
         bram_ins_wr_data = '0;
-        bram_r_r_addr = 0;
+        //bram_r_r_addr = 0;
 
-        // Deassert reset after 20 ns
+
         #10 rstn = 1;
 
         #400;
@@ -88,7 +88,22 @@ module datapath_top_tb;
         #390;
         @(posedge clk) stall = 0;
 
-        #800 $finish;
+        #20000
+        // Read BRAM R first 10 addresses 
+        for (int i = 0; i < 70; i++) begin
+            bram_r_r_addr =  i;
+            #10; // Wait for 2 cycles 
+            #10;
+
+            $display("Address %d: Read Data Row: %d, %d, %d, %d", 
+                     bram_r_r_addr, 
+                     $signed(bram_r_r_data[0]),
+                     $signed(bram_r_r_data[1]),
+                     $signed(bram_r_r_data[2]),
+                     $signed(bram_r_r_data[3]));
+        end
+
+        #50 $finish;
     end
 
 

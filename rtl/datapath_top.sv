@@ -5,7 +5,7 @@ module datapath_top #(
     parameter DATA_WIDTH = 32,
     parameter BRAM_DEPTH = 1024,
     parameter ADDR_WIDTH = $clog2(BRAM_DEPTH),
-    parameter INS_ADDR_WIDTH = 8,
+    parameter INS_ADDR_WIDTH = 11,
     parameter INS_WIDTH = 64
 ) (
     input logic clk, rstn,

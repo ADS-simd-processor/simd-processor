@@ -77,10 +77,13 @@ mem_file = open("instructions.txt", "w")
 # n: columns of matrix A
 # p (only needed for dot product) columns of matrix B, to do dot product B has to be nxp matrix
 
-inst_gen("add", 0, 0, 0, 1, 4)
-inst_gen("sub", 1, 1, 1, 1, 8)
-inst_gen("trans", 0, 0, 3, 1, 4)
-inst_gen("dot", 3, 3, 4, 4, 8, 4)
+# inst_gen("add", 0, 0, 0, 1, 4)
+# inst_gen("sub", 1, 1, 1, 1, 8)
+# inst_gen("trans", 0, 0, 3, 1, 4)
+# inst_gen("dot", 3, 3, 4, 4, 8, 4)
+inst_gen("add", 0, 0, 0, 2, 2)
+inst_gen("sub", 2, 2, 2, 4, 4)
+inst_gen("dot", 6, 6, 6, 16, 16, 16)
     
 asm_file.close()
 mem_file.close()
