@@ -7,7 +7,7 @@ module datapath_top_tb;
     parameter DATA_WIDTH = 32;
     parameter BRAM_DEPTH = 1024;
     parameter ADDR_WIDTH = $clog2(BRAM_DEPTH);
-    parameter INS_ADDR_WIDTH = 10;
+    parameter INS_ADDR_WIDTH = 11;
     parameter INS_WIDTH = 64;
 
     logic clk, rstn;
@@ -74,14 +74,14 @@ module datapath_top_tb;
         bram_a_wr_data = '0;
         bram_b_wr_data = '0;
         bram_ins_wr_data = '0;
-        bram_r_r_addr = 0;
+        //bram_r_r_addr = 0;
 
 
         #10 rstn = 1;
 
-        #800 
+        #20000
         // Read BRAM R first 10 addresses 
-        for (int i = 0; i < 10; i++) begin
+        for (int i = 0; i < 70; i++) begin
             bram_r_r_addr =  i;
             #10; // Wait for 2 cycles 
             #10;

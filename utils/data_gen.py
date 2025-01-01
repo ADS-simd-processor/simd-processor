@@ -10,6 +10,8 @@ MASK = 0xFFFFFFFF
 
 def dec2hex(x, width):
     #print(hex(x & MASK))
+    x = np.uint32(x)
+    
     return hex(x & MASK)[2:].zfill(width)
 
 def write_data(file, matrix):
@@ -36,28 +38,28 @@ b_file = open("b_data.txt", "w")
 # if using for dot product, b has to be given as transpose
 
 # for add
-a = np.random.randint(-50, 50, (1, 4))
+a = np.random.randint(-50, 50, (2, 2), dtype=np.int32)
 write_data(a_file, a)
 
-b = np.random.randint(-50, 50, (1, 4))
+b = np.random.randint(-50, 50, (2, 2), dtype=np.int32)
 write_data(b_file, b)
 
 print(f"a + b = {(a + b).astype(np.int32)}")
 
 # for sub
-a = np.random.randint(-30, 30, (1, 8))
+a = np.random.randint(-30, 30, (4, 4), dtype=np.int32)
 write_data(a_file, a)
 
-b = np.random.randint(-30, 30, (1, 8))
+b = np.random.randint(-30, 30, (4, 4), dtype=np.int32)
 write_data(b_file, b)
 
 print(f"a - b = {(a - b).astype(np.int32)}")
 
 # for dot
-a = np.random.randint(-10, 10, (4, 8))
+a = np.random.randint(-10, 10, (16, 16), dtype=np.int32)
 write_data(a_file, a)
 
-b = np.random.randint(-10, 10, (4, 8))
+b = np.random.randint(-10, 10, (16, 16), dtype=np.int32)
 write_data(b_file, b)
 
 print(f"a . b = {np.matmul(a, b.T).astype(np.int32)}")
