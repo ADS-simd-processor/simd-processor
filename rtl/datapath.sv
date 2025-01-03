@@ -13,7 +13,6 @@ module datapath #(
     input logic stall,
         
     input logic in_data_valid,
-    
 
     input logic [INS_BRAM_WIDTH-1:0] bram_ins_din, 
     input logic [PE_COUNT-1:0][DATA_WIDTH-1:0] bram_a_dout, bram_b_dout,
