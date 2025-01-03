@@ -308,6 +308,7 @@
 	// Add user logic here
 
 	reg prev_slv_reg0;
+	reg prev_in_data_valid;
 	
 	always @( posedge S_AXI_ACLK )
 	begin

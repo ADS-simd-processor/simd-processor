@@ -6,6 +6,8 @@ simd-processor.runs/
 simd-processor.sim/
 simd-processor.srcs/sources_1/bd/
 simd-processor.srcs/utils_1/
+simd-processor.tmp/
+simd-processor/
 *.pdf
 *.xpr
 *.txt
