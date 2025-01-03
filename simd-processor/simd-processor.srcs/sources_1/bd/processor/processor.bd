@@ -1,0 +1,365 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0xEA545EC5C4596777",
+      "device": "xc7z020clg484-1",
+      "gen_directory": "../../../../simd-processor.gen/sources_1/bd/processor",
+      "name": "processor",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2023.1",
+      "validated": "true"
+    },
+    "design_tree": {
+      "simd_processor_0": "",
+      "BRAM_A": "",
+      "BRAM_B": "",
+      "BRAM_R": "",
+      "BRAM_INS": ""
+    },
+    "interface_ports": {
+      "BRAM_PORTB_0": {
+        "mode": "Slave",
+        "vlnv_bus_definition": "xilinx.com:interface:bram:1.0",
+        "vlnv": "xilinx.com:interface:bram_rtl:1.0",
+        "parameters": {
+          "MASTER_TYPE": {
+            "value": "OTHER",
+            "value_src": "default"
+          },
+          "MEM_ECC": {
+            "value": "NONE",
+            "value_src": "default"
+          },
+          "MEM_SIZE": {
+            "value": "8192",
+            "value_src": "default"
+          },
+          "MEM_WIDTH": {
+            "value": "32",
+            "value_src": "default"
+          },
+          "READ_LATENCY": {
+            "value": "1",
+            "value_src": "default"
+          },
+          "READ_WRITE_MODE": {
+            "value": "READ_ONLY"
+          }
+        },
+        "port_maps": {
+          "ADDR": {
+            "physical_name": "BRAM_PORTB_0_addr",
+            "direction": "I",
+            "left": "9",
+            "right": "0"
+          },
+          "CLK": {
+            "physical_name": "BRAM_PORTB_0_clk",
+            "direction": "I"
+          },
+          "DOUT": {
+            "physical_name": "BRAM_PORTB_0_dout",
+            "direction": "O",
+            "left": "127",
+            "right": "0"
+          }
+        }
+      }
+    },
+    "ports": {
+      "clk": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "ASSOCIATED_RESET": {
+            "value": "rstn",
+            "value_src": "default"
+          },
+          "CLK_DOMAIN": {
+            "value": "processor_clk",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "default"
+          }
+        }
+      },
+      "rstn": {
+        "type": "rst",
+        "direction": "I",
+        "parameters": {
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "POLARITY": {
+            "value": "ACTIVE_LOW",
+            "value_src": "default"
+          }
+        }
+      },
+      "stall": {
+        "direction": "I"
+      },
+      "in_data_valid": {
+        "direction": "I"
+      },
+      "out_data_valid": {
+        "direction": "O"
+      }
+    },
+    "components": {
+      "simd_processor_0": {
+        "vlnv": "xilinx.com:user:simd_processor:1.0",
+        "xci_name": "processor_simd_processor_0_0",
+        "xci_path": "ip\\processor_simd_processor_0_0\\processor_simd_processor_0_0.xci",
+        "inst_hier_path": "simd_processor_0",
+        "parameters": {
+          "INS_ADDR_WIDTH": {
+            "value": "11"
+          }
+        }
+      },
+      "BRAM_A": {
+        "vlnv": "xilinx.com:ip:blk_mem_gen:8.4",
+        "xci_name": "processor_BRAM_A_0",
+        "xci_path": "ip\\processor_BRAM_A_0\\processor_BRAM_A_0.xci",
+        "inst_hier_path": "BRAM_A",
+        "parameters": {
+          "Coe_File": {
+            "value": "../../../../../../../meminit/a_data.coe"
+          },
+          "Enable_B": {
+            "value": "Always_Enabled"
+          },
+          "Fill_Remaining_Memory_Locations": {
+            "value": "true"
+          },
+          "Load_Init_File": {
+            "value": "true"
+          },
+          "Memory_Type": {
+            "value": "Simple_Dual_Port_RAM"
+          },
+          "Write_Depth_A": {
+            "value": "1024"
+          },
+          "Write_Width_A": {
+            "value": "128"
+          },
+          "use_bram_block": {
+            "value": "Stand_Alone"
+          }
+        }
+      },
+      "BRAM_B": {
+        "vlnv": "xilinx.com:ip:blk_mem_gen:8.4",
+        "xci_name": "processor_BRAM_B_0",
+        "xci_path": "ip\\processor_BRAM_B_0\\processor_BRAM_B_0.xci",
+        "inst_hier_path": "BRAM_B",
+        "parameters": {
+          "Coe_File": {
+            "value": "../../../../../../../meminit/b_data.coe"
+          },
+          "Enable_B": {
+            "value": "Always_Enabled"
+          },
+          "Fill_Remaining_Memory_Locations": {
+            "value": "true"
+          },
+          "Load_Init_File": {
+            "value": "true"
+          },
+          "Memory_Type": {
+            "value": "Simple_Dual_Port_RAM"
+          },
+          "Write_Depth_A": {
+            "value": "1024"
+          },
+          "Write_Width_A": {
+            "value": "128"
+          },
+          "use_bram_block": {
+            "value": "Stand_Alone"
+          }
+        }
+      },
+      "BRAM_R": {
+        "vlnv": "xilinx.com:ip:blk_mem_gen:8.4",
+        "xci_name": "processor_BRAM_R_0",
+        "xci_path": "ip\\processor_BRAM_R_0\\processor_BRAM_R_0.xci",
+        "inst_hier_path": "BRAM_R",
+        "parameters": {
+          "Enable_A": {
+            "value": "Always_Enabled"
+          },
+          "Enable_B": {
+            "value": "Always_Enabled"
+          },
+          "Fill_Remaining_Memory_Locations": {
+            "value": "true"
+          },
+          "Load_Init_File": {
+            "value": "false"
+          },
+          "Memory_Type": {
+            "value": "Simple_Dual_Port_RAM"
+          },
+          "Write_Depth_A": {
+            "value": "1024"
+          },
+          "Write_Width_A": {
+            "value": "128"
+          },
+          "use_bram_block": {
+            "value": "Stand_Alone"
+          }
+        }
+      },
+      "BRAM_INS": {
+        "vlnv": "xilinx.com:ip:blk_mem_gen:8.4",
+        "xci_name": "processor_BRAM_INS_0",
+        "xci_path": "ip\\processor_BRAM_INS_0\\processor_BRAM_INS_0.xci",
+        "inst_hier_path": "BRAM_INS",
+        "parameters": {
+          "Coe_File": {
+            "value": "../../../../../../../meminit/instructions_1.coe"
+          },
+          "Enable_B": {
+            "value": "Always_Enabled"
+          },
+          "Fill_Remaining_Memory_Locations": {
+            "value": "true"
+          },
+          "Load_Init_File": {
+            "value": "true"
+          },
+          "Memory_Type": {
+            "value": "Simple_Dual_Port_RAM"
+          },
+          "Write_Depth_A": {
+            "value": "2048"
+          },
+          "Write_Width_A": {
+            "value": "64"
+          },
+          "use_bram_block": {
+            "value": "Stand_Alone"
+          }
+        }
+      }
+    },
+    "interface_nets": {
+      "BRAM_PORTB_0_1": {
+        "interface_ports": [
+          "BRAM_PORTB_0",
+          "BRAM_R/BRAM_PORTB"
+        ]
+      }
+    },
+    "nets": {
+      "BRAM_A_doutb": {
+        "ports": [
+          "BRAM_A/doutb",
+          "simd_processor_0/bram_a_dout"
+        ]
+      },
+      "BRAM_B_doutb": {
+        "ports": [
+          "BRAM_B/doutb",
+          "simd_processor_0/bram_b_dout"
+        ]
+      },
+      "BRAM_INS_doutb": {
+        "ports": [
+          "BRAM_INS/doutb",
+          "simd_processor_0/bram_ins_din"
+        ]
+      },
+      "clk_1": {
+        "ports": [
+          "clk",
+          "BRAM_A/clkb",
+          "BRAM_B/clkb",
+          "BRAM_R/clka",
+          "simd_processor_0/clk",
+          "BRAM_INS/clkb"
+        ]
+      },
+      "in_data_valid_0_1": {
+        "ports": [
+          "in_data_valid",
+          "simd_processor_0/in_data_valid"
+        ]
+      },
+      "rstn_0_1": {
+        "ports": [
+          "rstn",
+          "simd_processor_0/rstn"
+        ]
+      },
+      "simd_processor_0_bram_a_addr": {
+        "ports": [
+          "simd_processor_0/bram_a_addr",
+          "BRAM_A/addrb"
+        ]
+      },
+      "simd_processor_0_bram_b_addr": {
+        "ports": [
+          "simd_processor_0/bram_b_addr",
+          "BRAM_B/addrb"
+        ]
+      },
+      "simd_processor_0_bram_r_addr": {
+        "ports": [
+          "simd_processor_0/bram_r_addr",
+          "BRAM_R/addra"
+        ]
+      },
+      "simd_processor_0_bram_r_din": {
+        "ports": [
+          "simd_processor_0/bram_r_din",
+          "BRAM_R/dina"
+        ]
+      },
+      "simd_processor_0_bram_r_wen": {
+        "ports": [
+          "simd_processor_0/bram_r_wen",
+          "BRAM_R/wea"
+        ]
+      },
+      "simd_processor_0_out_data_valid": {
+        "ports": [
+          "simd_processor_0/out_data_valid",
+          "out_data_valid"
+        ]
+      },
+      "simd_processor_0_pc": {
+        "ports": [
+          "simd_processor_0/pc",
+          "BRAM_INS/addrb"
+        ]
+      },
+      "stall_0_1": {
+        "ports": [
+          "stall",
+          "simd_processor_0/stall"
+        ]
+      }
+    }
+  }
+}

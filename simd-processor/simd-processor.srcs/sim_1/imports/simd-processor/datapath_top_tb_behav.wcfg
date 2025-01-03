@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="datapath_top_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="datapath_top_tb" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="887.780 ns"></ZoomStartTime>
+      <ZoomEndTime time="1,002.581 ns"></ZoomEndTime>
+      <Cursor1Time time="1,000.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="228"></NameColumnWidth>
+      <ValueColumnWidth column_width="160"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="66" />
+   <wvobject fp_name="/datapath_top_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/rstn" type="logic">
+      <obj_property name="ElementShortName">rstn</obj_property>
+      <obj_property name="ObjectShortName">rstn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/bram_a_wr_en" type="logic">
+      <obj_property name="ElementShortName">bram_a_wr_en</obj_property>
+      <obj_property name="ObjectShortName">bram_a_wr_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/bram_a_wr_addr" type="array">
+      <obj_property name="ElementShortName">bram_a_wr_addr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">bram_a_wr_addr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/bram_a_wr_data" type="array">
+      <obj_property name="ElementShortName">bram_a_wr_data[3:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">bram_a_wr_data[3:0][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/bram_b_wr_en" type="logic">
+      <obj_property name="ElementShortName">bram_b_wr_en</obj_property>
+      <obj_property name="ObjectShortName">bram_b_wr_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/bram_b_wr_addr" type="array">
+      <obj_property name="ElementShortName">bram_b_wr_addr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">bram_b_wr_addr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/bram_b_wr_data" type="array">
+      <obj_property name="ElementShortName">bram_b_wr_data[3:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">bram_b_wr_data[3:0][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/bram_ins_wr_en" type="logic">
+      <obj_property name="ElementShortName">bram_ins_wr_en</obj_property>
+      <obj_property name="ObjectShortName">bram_ins_wr_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/bram_ins_wr_addr" type="array">
+      <obj_property name="ElementShortName">bram_ins_wr_addr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">bram_ins_wr_addr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/bram_ins_wr_data" type="array">
+      <obj_property name="ElementShortName">bram_ins_wr_data[63:0]</obj_property>
+      <obj_property name="ObjectShortName">bram_ins_wr_data[63:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/bram_r_r_addr" type="array">
+      <obj_property name="ElementShortName">bram_r_r_addr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">bram_r_r_addr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/bram_r_r_data" type="array">
+      <obj_property name="ElementShortName">bram_r_r_data[3:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">bram_r_r_data[3:0][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/PE_COUNT" type="array">
+      <obj_property name="ElementShortName">PE_COUNT[31:0]</obj_property>
+      <obj_property name="ObjectShortName">PE_COUNT[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/DATA_WIDTH" type="array">
+      <obj_property name="ElementShortName">DATA_WIDTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">DATA_WIDTH[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/BRAM_DEPTH" type="array">
+      <obj_property name="ElementShortName">BRAM_DEPTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">BRAM_DEPTH[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/ADDR_WIDTH" type="array">
+      <obj_property name="ElementShortName">ADDR_WIDTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ADDR_WIDTH[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/INS_ADDR_WIDTH" type="array">
+      <obj_property name="ElementShortName">INS_ADDR_WIDTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">INS_ADDR_WIDTH[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/INS_WIDTH" type="array">
+      <obj_property name="ElementShortName">INS_WIDTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">INS_WIDTH[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/rstn" type="logic">
+      <obj_property name="ElementShortName">rstn</obj_property>
+      <obj_property name="ObjectShortName">rstn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/instruction" type="array">
+      <obj_property name="ElementShortName">instruction[32:0]</obj_property>
+      <obj_property name="ObjectShortName">instruction[32:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/bram_a_dout" type="array">
+      <obj_property name="ElementShortName">bram_a_dout[3:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">bram_a_dout[3:0][31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/bram_b_dout" type="array">
+      <obj_property name="ElementShortName">bram_b_dout[3:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">bram_b_dout[3:0][31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/bram_a_addr" type="array">
+      <obj_property name="ElementShortName">bram_a_addr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">bram_a_addr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/bram_b_addr" type="array">
+      <obj_property name="ElementShortName">bram_b_addr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">bram_b_addr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/bram_r_addr" type="array">
+      <obj_property name="ElementShortName">bram_r_addr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">bram_r_addr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/bram_r_wen" type="logic">
+      <obj_property name="ElementShortName">bram_r_wen</obj_property>
+      <obj_property name="ObjectShortName">bram_r_wen</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/pc" type="array">
+      <obj_property name="ElementShortName">pc[9:0]</obj_property>
+      <obj_property name="ObjectShortName">pc[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/bram_r_din" type="array">
+      <obj_property name="ElementShortName">bram_r_din[3:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">bram_r_din[3:0][31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/half_clk" type="logic">
+      <obj_property name="ElementShortName">half_clk</obj_property>
+      <obj_property name="ObjectShortName">half_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/a_addr" type="array">
+      <obj_property name="ElementShortName">a_addr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">a_addr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/b_addr" type="array">
+      <obj_property name="ElementShortName">b_addr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">b_addr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/pe_op" type="array">
+      <obj_property name="ElementShortName">pe_op[1:0]</obj_property>
+      <obj_property name="ObjectShortName">pe_op[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/dot_ctrl" type="array">
+      <obj_property name="ElementShortName">dot_ctrl[1:0]</obj_property>
+      <obj_property name="ObjectShortName">dot_ctrl[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/r_addr" type="array">
+      <obj_property name="ElementShortName">r_addr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">r_addr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/write_en" type="logic">
+      <obj_property name="ElementShortName">write_en</obj_property>
+      <obj_property name="ObjectShortName">write_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/r_select" type="logic">
+      <obj_property name="ElementShortName">r_select</obj_property>
+      <obj_property name="ObjectShortName">r_select</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/load_ctrl_reg" type="array">
+      <obj_property name="ElementShortName">load_ctrl_reg[35:0]</obj_property>
+      <obj_property name="ObjectShortName">load_ctrl_reg[35:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/exec_ctrl_reg" type="array">
+      <obj_property name="ElementShortName">exec_ctrl_reg[15:0]</obj_property>
+      <obj_property name="ObjectShortName">exec_ctrl_reg[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/store_ctrl_reg" type="array">
+      <obj_property name="ElementShortName">store_ctrl_reg[11:0]</obj_property>
+      <obj_property name="ObjectShortName">store_ctrl_reg[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/load_a_addr" type="array">
+      <obj_property name="ElementShortName">load_a_addr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">load_a_addr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/load_b_addr" type="array">
+      <obj_property name="ElementShortName">load_b_addr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">load_b_addr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/exec_pe_op" type="array">
+      <obj_property name="ElementShortName">exec_pe_op[1:0]</obj_property>
+      <obj_property name="ObjectShortName">exec_pe_op[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/exec_dot_ctrl" type="array">
+      <obj_property name="ElementShortName">exec_dot_ctrl[1:0]</obj_property>
+      <obj_property name="ObjectShortName">exec_dot_ctrl[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/store_r_addr" type="array">
+      <obj_property name="ElementShortName">store_r_addr[9:0]</obj_property>
+      <obj_property name="ObjectShortName">store_r_addr[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/store_write_en" type="logic">
+      <obj_property name="ElementShortName">store_write_en</obj_property>
+      <obj_property name="ObjectShortName">store_write_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/store_r_select" type="logic">
+      <obj_property name="ElementShortName">store_r_select</obj_property>
+      <obj_property name="ObjectShortName">store_r_select</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/a" type="array">
+      <obj_property name="ElementShortName">a[3:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">a[3:0][31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/b" type="array">
+      <obj_property name="ElementShortName">b[3:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">b[3:0][31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/elem_out" type="array">
+      <obj_property name="ElementShortName">elem_out[3:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">elem_out[3:0][31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/dot_out" type="array">
+      <obj_property name="ElementShortName">dot_out[3:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">dot_out[3:0][31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/store_out" type="array">
+      <obj_property name="ElementShortName">store_out[3:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">store_out[3:0][31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/stall" type="logic">
+      <obj_property name="ElementShortName">stall</obj_property>
+      <obj_property name="ObjectShortName">stall</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/PE_COUNT" type="array">
+      <obj_property name="ElementShortName">PE_COUNT[31:0]</obj_property>
+      <obj_property name="ObjectShortName">PE_COUNT[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/DATA_WIDTH" type="array">
+      <obj_property name="ElementShortName">DATA_WIDTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">DATA_WIDTH[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/BRAM_DEPTH" type="array">
+      <obj_property name="ElementShortName">BRAM_DEPTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">BRAM_DEPTH[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/ADDR_WIDTH" type="array">
+      <obj_property name="ElementShortName">ADDR_WIDTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ADDR_WIDTH[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/INS_ADDR_WIDTH" type="array">
+      <obj_property name="ElementShortName">INS_ADDR_WIDTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">INS_ADDR_WIDTH[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/LOAD_CTRL_WIDTH" type="array">
+      <obj_property name="ElementShortName">LOAD_CTRL_WIDTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">LOAD_CTRL_WIDTH[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/EXEC_CTRL_WIDTH" type="array">
+      <obj_property name="ElementShortName">EXEC_CTRL_WIDTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">EXEC_CTRL_WIDTH[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/datapath_uut/STORE_CTRL_WIDTH" type="array">
+      <obj_property name="ElementShortName">STORE_CTRL_WIDTH[31:0]</obj_property>
+      <obj_property name="ObjectShortName">STORE_CTRL_WIDTH[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/bram_r/inst/\native_mem_module.blk_mem_gen_v8_4_8_inst /memory[4]" type="array">
+      <obj_property name="ElementShortName">[4][127:0]</obj_property>
+      <obj_property name="ObjectShortName">[4][127:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/bram_r/inst/\native_mem_module.blk_mem_gen_v8_4_8_inst /memory[5]" type="array">
+      <obj_property name="ElementShortName">[5][127:0]</obj_property>
+      <obj_property name="ObjectShortName">[5][127:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/bram_r/inst/\native_mem_module.blk_mem_gen_v8_4_8_inst /memory[6]" type="array">
+      <obj_property name="ElementShortName">[6][127:0]</obj_property>
+      <obj_property name="ObjectShortName">[6][127:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/datapath_top_tb/dut/bram_r/inst/\native_mem_module.blk_mem_gen_v8_4_8_inst /memory[7]" type="array">
+      <obj_property name="ElementShortName">[7][127:0]</obj_property>
+      <obj_property name="ObjectShortName">[7][127:0]</obj_property>
+   </wvobject>
+</wave_config>

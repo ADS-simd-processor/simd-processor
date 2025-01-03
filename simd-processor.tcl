@@ -184,7 +184,6 @@ set proj_dir [get_property directory [current_project]]
 
 # Set project properties
 set obj [current_project]
-set_property -name "board_part" -value "digilentinc.com:zedboard:part0:1.1" -objects $obj
 set_property -name "default_lib" -value "xil_defaultlib" -objects $obj
 set_property -name "enable_resource_estimation" -value "0" -objects $obj
 set_property -name "enable_vhdl_2008" -value "1" -objects $obj
@@ -532,7 +531,7 @@ proc cr_bd_processor { parentCell } {
   # Create instance: BRAM_A, and set properties
   set BRAM_A [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.4 BRAM_A ]
   set_property -dict [list \
-    CONFIG.Coe_File {c:/Users/anuki/OneDrive - University of Moratuwa/Documents/Anuki/Campus/Semester 7/Advanced Digital Systems/simd-processor/meminit/a_data.coe} \
+    CONFIG.Coe_File {C:/Users/USER/Desktop/New_folder/simd-processor/meminit/a_data.coe} \
     CONFIG.Enable_B {Always_Enabled} \
     CONFIG.Fill_Remaining_Memory_Locations {true} \
     CONFIG.Load_Init_File {true} \
@@ -546,7 +545,7 @@ proc cr_bd_processor { parentCell } {
   # Create instance: BRAM_B, and set properties
   set BRAM_B [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.4 BRAM_B ]
   set_property -dict [list \
-    CONFIG.Coe_File {c:/Users/anuki/OneDrive - University of Moratuwa/Documents/Anuki/Campus/Semester 7/Advanced Digital Systems/simd-processor/meminit/b_data.coe} \
+    CONFIG.Coe_File {C:/Users/USER/Desktop/New_folder/simd-processor/meminit/b_data.coe} \
     CONFIG.Enable_B {Always_Enabled} \
     CONFIG.Fill_Remaining_Memory_Locations {true} \
     CONFIG.Load_Init_File {true} \
@@ -574,7 +573,7 @@ proc cr_bd_processor { parentCell } {
   # Create instance: BRAM_INS, and set properties
   set BRAM_INS [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.4 BRAM_INS ]
   set_property -dict [list \
-    CONFIG.Coe_File {c:/Users/anuki/OneDrive - University of Moratuwa/Documents/Anuki/Campus/Semester 7/Advanced Digital Systems/simd-processor/meminit/instructions_1.coe} \
+    CONFIG.Coe_File {C:/Users/USER/Desktop/New_folder/simd-processor/meminit/instructions_1.coe} \
     CONFIG.Enable_B {Always_Enabled} \
     CONFIG.Fill_Remaining_Memory_Locations {true} \
     CONFIG.Load_Init_File {true} \

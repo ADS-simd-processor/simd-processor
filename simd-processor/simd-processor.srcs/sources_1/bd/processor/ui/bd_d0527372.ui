@@ -1,0 +1,38 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"0.751005",
+   "Default View_TopLeft":"-409,487",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.5.8 2022-09-21 7111 VDI=41 GEI=38 GUI=JA:10.0
+#  -string -flagsOSRD
+preplace port BRAM_PORTB_0 -pg 1 -lvl 0 -x -10 -y 600 -defaultsOSRD
+preplace port port-id_clk -pg 1 -lvl 0 -x -10 -y 20 -defaultsOSRD
+preplace port port-id_rstn -pg 1 -lvl 0 -x -10 -y 80 -defaultsOSRD
+preplace port port-id_stall -pg 1 -lvl 0 -x -10 -y 110 -defaultsOSRD
+preplace port port-id_in_data_valid -pg 1 -lvl 0 -x -10 -y 50 -defaultsOSRD
+preplace port port-id_out_data_valid -pg 1 -lvl 3 -x 710 -y 20 -defaultsOSRD
+preplace inst simd_processor_0 -pg 1 -lvl 1 -x 280 -y 850 -defaultsOSRD
+preplace inst BRAM_A -pg 1 -lvl 1 -x 280 -y 70 -defaultsOSRD
+preplace inst BRAM_B -pg 1 -lvl 1 -x 280 -y 300 -defaultsOSRD
+preplace inst BRAM_R -pg 1 -lvl 1 -x 280 -y 580 -defaultsOSRD
+preplace inst BRAM_INS -pg 1 -lvl 2 -x 590 -y 870 -defaultsOSRD
+preplace netloc BRAM_A_doutb 1 0 1 90 110n
+preplace netloc BRAM_B_doutb 1 0 1 80 390n
+preplace netloc BRAM_INS_doutb 1 0 2 130 970 480
+preplace netloc clk_1 1 0 2 50 980 470
+preplace netloc in_data_valid_0_1 1 0 1 20 50n
+preplace netloc rstn_0_1 1 0 1 60 80n
+preplace netloc simd_processor_0_bram_a_addr 1 0 2 130 720 430
+preplace netloc simd_processor_0_bram_b_addr 1 0 2 110 730 450
+preplace netloc simd_processor_0_bram_r_addr 1 0 2 120 990 450
+preplace netloc simd_processor_0_bram_r_din 1 0 2 100 1000 430
+preplace netloc simd_processor_0_bram_r_wen 1 0 2 70 1010 440
+preplace netloc simd_processor_0_out_data_valid 1 1 2 460J 20 N
+preplace netloc simd_processor_0_pc 1 1 1 N 870
+preplace netloc stall_0_1 1 0 1 10 110n
+preplace netloc BRAM_PORTB_0_1 1 0 1 N 600
+levelinfo -pg 1 -10 280 590 710
+pagesize -pg 1 -db -bbox -sgen -170 -30 860 1100
+"
+}
+0
