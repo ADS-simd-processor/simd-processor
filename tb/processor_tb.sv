@@ -48,16 +48,15 @@ module processor_tb();
 
 
         #10 rstn = 1;
+        
+        #30 in_data_valid = 1;
 
         #400;
-        @(posedge clk) stall = 1;
 
         #390;
-        @(posedge clk) stall = 0;
 
         #41380
 
-        in_data_valid = 1;
         // Read BRAM R 
         for (int i = 0; i < 75; i++) begin
             BRAM_PORTB_0_addr =  i;

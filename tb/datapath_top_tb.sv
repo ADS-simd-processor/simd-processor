@@ -85,11 +85,7 @@ module datapath_top_tb;
 
         #10 rstn = 1;
 
-        #400;
-        @(posedge clk) stall = 1;
-
-        #390;
-        @(posedge clk) stall = 0;
+        #20 in_data_valid = 1;
 
         #41380
 
