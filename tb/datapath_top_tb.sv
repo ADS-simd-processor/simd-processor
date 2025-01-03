@@ -85,11 +85,12 @@ module datapath_top_tb;
 
         #10 rstn = 1;
 
-        #20 in_data_valid = 1;
+        #50 in_data_valid = 1;
+        #20 in_data_valid = 0;
 
         #41380
 
-        in_data_valid = 1;
+        
         // Read BRAM R 
         for (int i = 0; i < 50; i++) begin
             bram_r_r_addr =  i;
@@ -103,6 +104,8 @@ module datapath_top_tb;
                      $signed(bram_r_r_data[2]),
                      $signed(bram_r_r_data[3]));
         end
+
+        in_data_valid = 1;
 
         #50 $finish;
     end
