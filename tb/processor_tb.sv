@@ -59,7 +59,7 @@ module processor_tb();
 
         in_data_valid = 1;
         // Read BRAM R 
-        for (int i = 0; i < 50; i++) begin
+        for (int i = 0; i < 75; i++) begin
             BRAM_PORTB_0_addr =  i;
             #10; // Wait for 2 cycles 
             #10;
