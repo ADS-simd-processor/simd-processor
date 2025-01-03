@@ -1,9 +1,20 @@
-simd-processor.*/
+simd-processor.cache/
+simd-processor.gen/
+simd-processor.hw/
+simd-processor.ip_user_files/
+simd-processor.runs/
+simd-processor.sim/
+simd-processor.srcs/sources_1/bd/
+simd-processor.srcs/utils_1/
 *.pdf
 *.xpr
 *.txt
 *.exe 
 .vscode/
+*.log
+*.jou
+*.str
 
 
 !utils/expected_results.txt
+
