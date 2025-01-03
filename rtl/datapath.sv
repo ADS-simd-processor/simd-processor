@@ -4,8 +4,8 @@
 module datapath #(
     parameter PE_COUNT = 4,
     parameter DATA_WIDTH = 32,
+    parameter ADDR_WIDTH = 10,
     parameter BRAM_DEPTH = 1024,
-    parameter ADDR_WIDTH = $clog2(BRAM_DEPTH),
     parameter INS_ADDR_WIDTH = 8,
     parameter INS_BRAM_WIDTH = 64
 ) (
