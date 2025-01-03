@@ -2,14 +2,21 @@
 
 module processor_tb();
 
+    parameter PE_COUNT = 4;
+    parameter DATA_WIDTH = 32;
+    parameter BRAM_DEPTH = 2048;
+    parameter ADDR_WIDTH = $clog2(BRAM_DEPTH);
+    parameter INS_ADDR_WIDTH = 11;
+    parameter INS_WIDTH = 64;
+
     logic clk;
     logic in_data_valid;
     logic rstn;
     logic stall;
     logic out_data_valid;
-    logic [9:0] BRAM_PORTB_0_addr;
+    logic [ADDR_WIDTH-1:0] BRAM_PORTB_0_addr;
     logic BRAM_PORTB_0_clk;
-    logic [3:0][31:0] BRAM_PORTB_0_dout;
+    logic [PE_COUNT-1:0][DATA_WIDTH-1:0] BRAM_PORTB_0_dout;
 
     processor processor_uut(
         .clk(clk),

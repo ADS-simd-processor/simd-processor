@@ -1,21 +1,20 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xEA545EC5C4596777",
+      "boundary_crc": "0x5CBBFE7B513BBDC8",
       "device": "xc7z020clg484-1",
       "gen_directory": "../../../../simd-processor.gen/sources_1/bd/processor",
       "name": "processor",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
-      "tool_version": "2023.1",
-      "validated": "true"
+      "tool_version": "2023.1"
     },
     "design_tree": {
-      "simd_processor_0": "",
       "BRAM_A": "",
       "BRAM_B": "",
       "BRAM_R": "",
-      "BRAM_INS": ""
+      "BRAM_INS": "",
+      "simd_processor_0": ""
     },
     "interface_ports": {
       "BRAM_PORTB_0": {
@@ -51,7 +50,7 @@
           "ADDR": {
             "physical_name": "BRAM_PORTB_0_addr",
             "direction": "I",
-            "left": "9",
+            "left": "10",
             "right": "0"
           },
           "CLK": {
@@ -70,47 +69,11 @@
     "ports": {
       "clk": {
         "type": "clk",
-        "direction": "I",
-        "parameters": {
-          "ASSOCIATED_RESET": {
-            "value": "rstn",
-            "value_src": "default"
-          },
-          "CLK_DOMAIN": {
-            "value": "processor_clk",
-            "value_src": "default"
-          },
-          "FREQ_HZ": {
-            "value": "100000000",
-            "value_src": "default"
-          },
-          "FREQ_TOLERANCE_HZ": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "INSERT_VIP": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "PHASE": {
-            "value": "0.0",
-            "value_src": "default"
-          }
-        }
+        "direction": "I"
       },
       "rstn": {
         "type": "rst",
-        "direction": "I",
-        "parameters": {
-          "INSERT_VIP": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "POLARITY": {
-            "value": "ACTIVE_LOW",
-            "value_src": "default"
-          }
-        }
+        "direction": "I"
       },
       "stall": {
         "direction": "I"
@@ -123,17 +86,6 @@
       }
     },
     "components": {
-      "simd_processor_0": {
-        "vlnv": "xilinx.com:user:simd_processor:1.0",
-        "xci_name": "processor_simd_processor_0_0",
-        "xci_path": "ip\\processor_simd_processor_0_0\\processor_simd_processor_0_0.xci",
-        "inst_hier_path": "simd_processor_0",
-        "parameters": {
-          "INS_ADDR_WIDTH": {
-            "value": "11"
-          }
-        }
-      },
       "BRAM_A": {
         "vlnv": "xilinx.com:ip:blk_mem_gen:8.4",
         "xci_name": "processor_BRAM_A_0",
@@ -156,7 +108,7 @@
             "value": "Simple_Dual_Port_RAM"
           },
           "Write_Depth_A": {
-            "value": "1024"
+            "value": "2048"
           },
           "Write_Width_A": {
             "value": "128"
@@ -188,7 +140,7 @@
             "value": "Simple_Dual_Port_RAM"
           },
           "Write_Depth_A": {
-            "value": "1024"
+            "value": "2048"
           },
           "Write_Width_A": {
             "value": "128"
@@ -220,7 +172,7 @@
             "value": "Simple_Dual_Port_RAM"
           },
           "Write_Depth_A": {
-            "value": "1024"
+            "value": "2048"
           },
           "Write_Width_A": {
             "value": "128"
@@ -261,6 +213,20 @@
             "value": "Stand_Alone"
           }
         }
+      },
+      "simd_processor_0": {
+        "vlnv": "xilinx.com:user:simd_processor:1.0",
+        "xci_name": "processor_simd_processor_0_0",
+        "xci_path": "ip\\processor_simd_processor_0_0\\processor_simd_processor_0_0.xci",
+        "inst_hier_path": "simd_processor_0",
+        "parameters": {
+          "BRAM_DEPTH": {
+            "value": "2048"
+          },
+          "INS_ADDR_WIDTH": {
+            "value": "11"
+          }
+        }
       }
     },
     "interface_nets": {
@@ -296,8 +262,8 @@
           "BRAM_A/clkb",
           "BRAM_B/clkb",
           "BRAM_R/clka",
-          "simd_processor_0/clk",
-          "BRAM_INS/clkb"
+          "BRAM_INS/clkb",
+          "simd_processor_0/clk"
         ]
       },
       "in_data_valid_0_1": {
