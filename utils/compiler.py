@@ -7,7 +7,7 @@ import sys
 
 UNIT = 4
 OP_WIDTH = 3
-ADDR_WIDTH = 10
+ADDR_WIDTH = 11
 ELEM_SIZE = 4 # 4 bytes
 
 opcodes = {

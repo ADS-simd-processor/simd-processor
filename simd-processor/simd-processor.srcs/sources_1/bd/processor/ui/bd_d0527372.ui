@@ -1,7 +1,7 @@
 {
    "ActiveEmotionalView":"Default View",
-   "Default View_ScaleFactor":"0.751005",
-   "Default View_TopLeft":"-409,487",
+   "Default View_ScaleFactor":"1.06208",
+   "Default View_TopLeft":"-192,341",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.5.8 2022-09-21 7111 VDI=41 GEI=38 GUI=JA:10.0
 #  -string -flagsOSRD
@@ -11,11 +11,11 @@ preplace port port-id_rstn -pg 1 -lvl 0 -x -10 -y 80 -defaultsOSRD
 preplace port port-id_stall -pg 1 -lvl 0 -x -10 -y 110 -defaultsOSRD
 preplace port port-id_in_data_valid -pg 1 -lvl 0 -x -10 -y 50 -defaultsOSRD
 preplace port port-id_out_data_valid -pg 1 -lvl 3 -x 710 -y 20 -defaultsOSRD
-preplace inst simd_processor_0 -pg 1 -lvl 1 -x 280 -y 850 -defaultsOSRD
 preplace inst BRAM_A -pg 1 -lvl 1 -x 280 -y 70 -defaultsOSRD
 preplace inst BRAM_B -pg 1 -lvl 1 -x 280 -y 300 -defaultsOSRD
 preplace inst BRAM_R -pg 1 -lvl 1 -x 280 -y 580 -defaultsOSRD
 preplace inst BRAM_INS -pg 1 -lvl 2 -x 590 -y 870 -defaultsOSRD
+preplace inst simd_processor_0 -pg 1 -lvl 1 -x 280 -y 850 -defaultsOSRD
 preplace netloc BRAM_A_doutb 1 0 1 90 110n
 preplace netloc BRAM_B_doutb 1 0 1 80 390n
 preplace netloc BRAM_INS_doutb 1 0 2 130 970 480
