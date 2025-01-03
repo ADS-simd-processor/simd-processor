@@ -9,6 +9,7 @@ module decoder #(
     input logic rstn,
     input logic half_clk,
     input logic stall,
+    input logic ins_valid,
     
     input logic [(OPCODE_WIDTH+ADDR_WIDTH*3)-1:0] instruction, //From ins mem
 
@@ -21,7 +22,9 @@ module decoder #(
 
     output logic [ADDR_WIDTH-1:0] r_addr,
     output logic write_en, //BRAM write enable
-    output logic r_select // 0 - Write PE output, 1- write dot product output
+    output logic r_select, // 0 - Write PE output, 1- write dot product output
+
+    output logic ins_done
 );
 
     logic [OPCODE_WIDTH-1:0] opcode;
@@ -31,12 +34,21 @@ module decoder #(
     assign b_addr = instruction[(OPCODE_WIDTH+ADDR_WIDTH*2)-1 : OPCODE_WIDTH+ADDR_WIDTH];
     assign a_addr = instruction[(OPCODE_WIDTH+ADDR_WIDTH*3)-1 : OPCODE_WIDTH+ADDR_WIDTH*2];
 
+    assign ins_done = ((opcode==3'b000) || (pc=={INS_ADDR_WIDTH{1'b1}}));
 
    always @(posedge clk) begin
         if (!rstn)
-            pc <= 32'b0;
+            pc <= {INS_ADDR_WIDTH{1'b0}};
         else if (half_clk & !stall) begin
             pc <= pc + 1; 
+            if (pc=={INS_ADDR_WIDTH{1'b1}}) begin
+                if (ins_valid) begin
+                    pc <= {INS_ADDR_WIDTH{1'b0}};
+                end else begin
+                    pc <= pc;
+                end
+            end
+
         end
 	end
 

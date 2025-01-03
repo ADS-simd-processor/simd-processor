@@ -11,6 +11,9 @@ module datapath #(
 ) (
     input logic clk, rstn,
     input logic stall,
+        
+    input logic in_data_valid,
+    
 
     input logic [INS_BRAM_WIDTH-1:0] bram_ins_din, 
     input logic [PE_COUNT-1:0][DATA_WIDTH-1:0] bram_a_dout, bram_b_dout,
@@ -18,7 +21,9 @@ module datapath #(
     output logic [ADDR_WIDTH-1:0] bram_a_addr, bram_b_addr, bram_r_addr, 
     output logic bram_r_wen, //BRAM write enable     
     output logic [INS_ADDR_WIDTH-1:0] pc, //Program counter
-    output logic [PE_COUNT-1:0][DATA_WIDTH-1:0] bram_r_din
+    output logic [PE_COUNT-1:0][DATA_WIDTH-1:0] bram_r_din,
+
+    output logic out_data_valid
 );
 
     localparam LOAD_CTRL_WIDTH = 3 * ADDR_WIDTH + 1 + OP_SEL_WIDTH + 1 + 1 + 1;
@@ -28,6 +33,9 @@ module datapath #(
 
     // clock divider
     logic half_clk;
+
+    logic ins_valid;
+    logic ins_done;
 
     // Initial control signals from decode
     logic [INS_DATA_WIDTH-1:0] instruction;
@@ -78,6 +86,8 @@ module datapath #(
         .elem_out(elem_out),
         .dot_out(dot_out)
     );
+
+    status_manager sm(.*);
 
     // Combinational assignments
     assign instruction = bram_ins_din[INS_DATA_WIDTH-1:0];

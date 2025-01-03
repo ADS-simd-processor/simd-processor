@@ -10,6 +10,7 @@ module datapath_top #(
 ) (
     input logic clk, rstn,
     input logic stall,
+    input logic in_data_valid,
 
     //BRAM A from PS
     input logic bram_a_wr_en,
@@ -29,8 +30,9 @@ module datapath_top #(
     //BRAM R from PS
     input logic [INS_ADDR_WIDTH-1:0] bram_r_r_addr,
     //BRAM R to PS
-    output logic [PE_COUNT-1:0][DATA_WIDTH-1:0] bram_r_r_data
+    output logic [PE_COUNT-1:0][DATA_WIDTH-1:0] bram_r_r_data,
 
+    output logic out_data_valid
 );
 
     logic [INS_WIDTH-1:0] bram_ins_din;
