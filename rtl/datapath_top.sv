@@ -32,16 +32,12 @@ module datapath_top #(
     output logic [PE_COUNT-1:0][DATA_WIDTH-1:0] bram_r_r_data
 
 );
-    localparam INS_DATA_WIDTH = (OPCODE_WIDTH + ADDR_WIDTH*3);
 
-    logic [INS_WIDTH-1:0] ins_mem_rdata;
+    logic [INS_WIDTH-1:0] bram_ins_din;
     logic [ADDR_WIDTH-1:0] bram_a_addr, bram_b_addr, bram_r_addr; 
     logic bram_r_wen;     
     logic [INS_ADDR_WIDTH-1:0] pc;
     logic [PE_COUNT-1:0][DATA_WIDTH-1:0] bram_a_dout, bram_b_dout, bram_r_din;
-    logic [INS_DATA_WIDTH-1:0] instruction;
-
-    assign instruction = ins_mem_rdata[INS_DATA_WIDTH-1:0];
 
     datapath #(
         .PE_COUNT(PE_COUNT),
@@ -96,7 +92,7 @@ module datapath_top #(
         .clkb(clk),
         .enb(1'b1),
         .addrb(pc),
-        .doutb(ins_mem_rdata)
+        .doutb(bram_ins_din)
     );
 
 endmodule

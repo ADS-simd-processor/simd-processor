@@ -306,6 +306,8 @@
 	// Implement memory mapped register select and read logic generation
 	  assign S_AXI_RDATA = (axi_araddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] == 2'h0) ? slv_reg0 : (axi_araddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] == 2'h1) ? slv_reg1 : (axi_araddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] == 2'h2) ? slv_reg2 : (axi_araddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] == 2'h3) ? slv_reg3 :0;  
 	// Add user logic here
+
+	reg prev_slv_reg0;
 	
 	always @( posedge S_AXI_ACLK )
 	begin
@@ -315,12 +317,14 @@
 	      slv_reg2 <= 0;
 	      slv_reg3 <= 0;
 	      in_data_valid <= 0;
+		  prev_in_data_valid <= 0;
 	    end 
 	  else begin
 	      slv_reg1[0] <= out_data_valid;
 	      slv_reg2 <= 0;
 	      slv_reg3 <= 0;
-	      in_data_valid <= slv_reg0[0];
+	      prev_slv_reg0 <= slv_reg0[0];
+		  in_data_valid <= slv_reg0[0] & (~prev_slv_reg0);
       end
     end
 

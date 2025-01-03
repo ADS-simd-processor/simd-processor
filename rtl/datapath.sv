@@ -6,12 +6,13 @@ module datapath #(
     parameter DATA_WIDTH = 32,
     parameter BRAM_DEPTH = 1024,
     parameter ADDR_WIDTH = $clog2(BRAM_DEPTH),
-    parameter INS_ADDR_WIDTH = 8
+    parameter INS_ADDR_WIDTH = 8,
+    parameter INS_BRAM_WIDTH = 64
 ) (
     input logic clk, rstn,
     input logic stall,
 
-    input logic [(OPCODE_WIDTH+ADDR_WIDTH*3)-1:0] instruction, 
+    input logic [INS_BRAM_WIDTH-1:0] bram_ins_din, 
     input logic [PE_COUNT-1:0][DATA_WIDTH-1:0] bram_a_dout, bram_b_dout,
 
     output logic [ADDR_WIDTH-1:0] bram_a_addr, bram_b_addr, bram_r_addr, 
@@ -23,11 +24,13 @@ module datapath #(
     localparam LOAD_CTRL_WIDTH = 3 * ADDR_WIDTH + 1 + OP_SEL_WIDTH + 1 + 1 + 1;
     localparam EXEC_CTRL_WIDTH = ADDR_WIDTH + 1 + OP_SEL_WIDTH + 1 + 1 + 1;
     localparam STORE_CTRL_WIDTH = ADDR_WIDTH + 1 + 1;
+    localparam INS_DATA_WIDTH = (OPCODE_WIDTH + ADDR_WIDTH*3);
 
     // clock divider
     logic half_clk;
 
     // Initial control signals from decode
+    logic [INS_DATA_WIDTH-1:0] instruction;
     logic [ADDR_WIDTH-1:0] a_addr, b_addr;
     logic [OP_SEL_WIDTH-1:0] pe_op;
     logic [1:0] dot_ctrl;
@@ -77,6 +80,8 @@ module datapath #(
     );
 
     // Combinational assignments
+    assign instruction = bram_ins_din[INS_DATA_WIDTH-1:0];
+
     assign store_out = (store_r_select) ? dot_out : elem_out;
 
     // BRAM signals
