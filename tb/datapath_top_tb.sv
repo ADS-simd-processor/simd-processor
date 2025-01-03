@@ -94,19 +94,19 @@ module datapath_top_tb;
         #41380
 
         in_data_valid = 1;
-        // // Read BRAM R 
-        // for (int i = 0; i < 70; i++) begin
-        //     bram_r_r_addr =  i;
-        //     #10; // Wait for 2 cycles 
-        //     #10;
+        // Read BRAM R 
+        for (int i = 0; i < 50; i++) begin
+            bram_r_r_addr =  i;
+            #10; // Wait for 2 cycles 
+            #10;
 
-        //     $display("Address %d: Read Data Row: %d, %d, %d, %d", 
-        //              bram_r_r_addr, 
-        //              $signed(bram_r_r_data[0]),
-        //              $signed(bram_r_r_data[1]),
-        //              $signed(bram_r_r_data[2]),
-        //              $signed(bram_r_r_data[3]));
-        // end
+            $display("Address %d: Read Data Row: %d, %d, %d, %d", 
+                     bram_r_r_addr, 
+                     $signed(bram_r_r_data[0]),
+                     $signed(bram_r_r_data[1]),
+                     $signed(bram_r_r_data[2]),
+                     $signed(bram_r_r_data[3]));
+        end
 
         #50 $finish;
     end
