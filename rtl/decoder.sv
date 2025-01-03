@@ -40,13 +40,15 @@ module decoder #(
         if (!rstn)
             pc <= {INS_ADDR_WIDTH{1'b0}};
         else if (half_clk) begin
-            pc <= pc + 1; 
-            if (pc=={INS_ADDR_WIDTH{1'b1}}) begin
+            if (pc == {INS_ADDR_WIDTH{1'b0}}) begin
                 if (ins_valid) begin
-                    pc <= {INS_ADDR_WIDTH{1'b0}};
+                    pc <= pc + 1;
                 end else begin
                     pc <= pc;
                 end
+            end
+            else begin
+                pc <= pc + 1;
             end
 
         end
