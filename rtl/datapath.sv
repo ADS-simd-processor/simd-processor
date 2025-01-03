@@ -15,7 +15,8 @@ module datapath #(
     input logic in_data_valid,
 
     input logic [INS_BRAM_WIDTH-1:0] bram_ins_din, 
-    input logic [PE_COUNT-1:0][DATA_WIDTH-1:0] bram_a_dout, bram_b_dout,
+    input logic [PE_COUNT-1:0][DATA_WIDTH-1:0] bram_a_dout, 
+    input logic [PE_COUNT-1:0][DATA_WIDTH-1:0] bram_b_dout,
 
     output logic [ADDR_WIDTH-1:0] bram_a_addr, bram_b_addr, bram_r_addr, 
     output logic bram_r_wen, //BRAM write enable     
