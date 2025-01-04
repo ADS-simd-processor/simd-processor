@@ -15,7 +15,7 @@ module processor_tb();
     logic stall;
     logic out_data_valid;
     logic [ADDR_WIDTH-1:0] BRAM_PORTB_0_addr;
-    logic BRAM_PORTB_0_clk;
+    logic BRAM_PORTB_0_clk, BRAM_PORTB_0_en;
     logic [PE_COUNT-1:0][DATA_WIDTH-1:0] BRAM_PORTB_0_dout;
 
     processor processor_uut(
@@ -26,7 +26,8 @@ module processor_tb();
         .out_data_valid(out_data_valid),
         .BRAM_PORTB_0_addr(BRAM_PORTB_0_addr),
         .BRAM_PORTB_0_clk(BRAM_PORTB_0_clk),
-        .BRAM_PORTB_0_dout(BRAM_PORTB_0_dout)
+        .BRAM_PORTB_0_dout(BRAM_PORTB_0_dout),
+        .BRAM_PORTB_0_en(BRAM_PORTB_0_en)
     );
 
     // Clock generation
@@ -40,6 +41,7 @@ module processor_tb();
         forever #5 BRAM_PORTB_0_clk = ~BRAM_PORTB_0_clk; // 100 MHz clock
     end
 
+    assign BRAM_PORTB_0_en = 1;
 
     initial begin
         rstn = 0;
@@ -48,16 +50,14 @@ module processor_tb();
 
 
         #10 rstn = 1;
+        #10 in_data_valid = 1;
+        
+        #20 in_data_valid = 0;
 
-        #400;
-        @(posedge clk) stall = 1;
+        wait (out_data_valid == 1);
+        
+        @(posedge clk);
 
-        #390;
-        @(posedge clk) stall = 0;
-
-        #41380
-
-        in_data_valid = 1;
         // Read BRAM R 
         for (int i = 0; i < 75; i++) begin
             BRAM_PORTB_0_addr =  i;
@@ -71,6 +71,8 @@ module processor_tb();
                      $signed(BRAM_PORTB_0_dout[2]),
                      $signed(BRAM_PORTB_0_dout[3]));
         end
+        
+        in_data_valid = 1;
 
         #50 $finish;
     end
