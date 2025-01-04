@@ -58,11 +58,9 @@ print(f"a - b = {(a - b).astype(np.int32)}")
 # for dot
 a = np.random.randint(-10, 10, (16, 16), dtype=np.int32)
 write_data(a_file, a)
-print(a)
 
 b = np.random.randint(-10, 10, (16, 16), dtype=np.int32)
 write_data(b_file, b)
-print(b)
 
 print(f"a . b = {np.matmul(a, b.T).astype(np.int32)}")
 
