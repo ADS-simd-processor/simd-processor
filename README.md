@@ -1,4 +1,4 @@
-# System-on-Chip with an SIMD Processor
+# SIMD Processor integrated with a System-on-Chip
 
 This project implements an SIMD processor that can be used to offload matrix and vector operations from the Zynq SoC. Matrix operations are subdivided into the vector operations **add, subtract, dot product, and transpose**.
 
